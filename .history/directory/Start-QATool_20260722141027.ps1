@@ -110,12 +110,6 @@ try {
 
             "7" {
 
-                Start-SQTCollectEvidence
-
-            }
-
-            "8" {
-
                 New-SQTBugReport
 
             }
@@ -124,9 +118,9 @@ try {
             # Settings
             # =====================================================
 
-            "9" {
+            "8" {
 
-                Open-SQTSettings
+                Show-SQTSettings
 
             }
 
