@@ -2,6 +2,34 @@
 # Device Manager
 # ============================================================
 
+function Add-SQTDevice {
+
+    $devices = @(Get-SQTDevices)
+
+    Clear-Host
+
+    Write-Host ""
+    Write-Host "Add New Device"
+    Write-Host "--------------"
+
+    $name = Read-Host "Device Name"
+
+    $ip = Read-Host "Device IP"
+
+    $devices += [PSCustomObject]@{
+
+        Name = $name
+        IP   = $ip
+
+    }
+
+    Save-SQTDevices $devices
+
+    Write-SQTLog "Device saved successfully." "SUCCESS"
+
+    Pause-SQT
+
+}
 function Connect-SQTDevice {
 
     do {
@@ -37,7 +65,7 @@ function Connect-SQTDevice {
 
             "2" {
 
-                Write-SQTLog "Select Device - Coming Soon"
+                Show-SQTDevices
 
                 Pause-SQT
 
@@ -45,7 +73,7 @@ function Connect-SQTDevice {
 
             "3" {
 
-                Write-SQTLog "Add Device - Coming Soon"
+                Add-SQTDevice
 
                 Pause-SQT
 
