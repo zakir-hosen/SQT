@@ -1,4 +1,4 @@
-function New-SQTBugReport {
+function Show-BugReport {
 
     Write-SQTLog "Bug Report module is under development."
 

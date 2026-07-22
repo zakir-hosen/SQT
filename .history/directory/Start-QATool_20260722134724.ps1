@@ -94,7 +94,7 @@ try {
 
             "5" {
 
-                Start-SQTScreenRecording
+                Show-SQTScreenRecord
 
             }
 
@@ -104,7 +104,7 @@ try {
 
             "6" {
 
-                Show-SQTPerformanceInfo
+                Start-SQTCollectEvidence
 
             }
 
@@ -120,7 +120,7 @@ try {
 
             "8" {
 
-                Show-SQTSettings
+                Open-SQTSettings
 
             }
 

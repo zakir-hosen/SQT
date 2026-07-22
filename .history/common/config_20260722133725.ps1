@@ -4,7 +4,7 @@
 
 $Script:Config = $null
 
-function Get-SQTConfig {
+function Get-QAConfig {
 
     if ($null -eq $Script:Config) {
 
@@ -18,7 +18,7 @@ function Get-SQTConfig {
 
 }
 
-function Save-SQTConfig {
+function Save-Config {
 
     $configPath = Join-Path $PSScriptRoot "config.json"
 

@@ -120,7 +120,7 @@ try {
 
             "8" {
 
-                Show-SQTSettings
+                Open-SQTSettings
 
             }
 

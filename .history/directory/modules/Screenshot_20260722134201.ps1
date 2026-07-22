@@ -1,4 +1,4 @@
-function Take-SQTScreenshot {
+function Show-SQTScreenshot {
 
     Write-SQTLog "Screenshot module is under development."
 

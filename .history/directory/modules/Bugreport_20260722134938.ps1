@@ -1,4 +1,4 @@
-function Start-SQTLogcat {
+function Show-Bu {
 
     Write-SQTLog "Logcat module is under development."
 

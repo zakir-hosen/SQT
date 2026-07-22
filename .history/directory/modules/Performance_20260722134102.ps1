@@ -1,4 +1,4 @@
-function Show-SQTDeviceInfo {
+function Show-nfo {
 
     Write-SQTLog "Device Information module is under development."
 

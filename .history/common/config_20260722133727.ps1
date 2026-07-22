@@ -4,7 +4,7 @@
 
 $Script:Config = $null
 
-function Get-SQTConfig {
+function Get-QAConfig {
 
     if ($null -eq $Script:Config) {
 
