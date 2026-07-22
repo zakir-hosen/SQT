@@ -1,0 +1,1 @@
+Write-Log "Connecting to device..."
