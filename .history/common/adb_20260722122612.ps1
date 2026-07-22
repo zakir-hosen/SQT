@@ -1,9 +1,0 @@
-Invoke-Adb
-Connect-Device
-Disconnect-Device
-Get-Devices
-Get-DeviceInfo
-Restart-App
-Take-Screenshot
-Start-Logcat
-Stop-Logcat

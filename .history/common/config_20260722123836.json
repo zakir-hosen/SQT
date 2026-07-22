@@ -1,7 +1,0 @@
-{
-    "ToolName": "Sicunet QA Toolkit",
-    "Version": "1.0.0",
-    "ADBPath": "C:\\Users\\Zakir\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
-    "Package": "bd.sicunet.sicunetbd_intercom",
-    "CurrentDevice": ""
-}
