@@ -119,7 +119,7 @@ function Invoke-SQTShell {
 # ------------------------------------------------------------
 # Get Android PID
 # ------------------------------------------------------------
-function Get-SQTPID {
+function Get-SQTAppProcessId {
 
     param(
 
@@ -131,8 +131,9 @@ function Get-SQTPID {
 
     )
 
-    Invoke-SQTShell $Device "pidof -s $Package"
+    $appPid = Invoke-SQTShell $Device "pidof -s $Package"
 
+    return ($appPid | Out-String).Trim()
 }
 
 # ------------------------------------------------------------
@@ -210,7 +211,7 @@ function Pull-SQTFile {
 # ------------------------------------------------------------
 # Logcat
 # ------------------------------------------------------------
-function Start-SQTLogcat {
+function Start-SQTLogcatCapture {
 
     param(
 
@@ -222,9 +223,9 @@ function Start-SQTLogcat {
 
     )
 
-    $pid = Get-SQTPID $Device $Package
+    $appPid = Get-SQTAppProcessId $Device $Package
 
-    if ([string]::IsNullOrWhiteSpace($pid)) {
+    if ([string]::IsNullOrWhiteSpace($appPid)) {
 
         throw "Application is not running."
 
@@ -234,7 +235,7 @@ function Start-SQTLogcat {
         "-s",
         "$Device`:5555",
         "logcat",
-        "--pid=$pid"
+        "--pid=$appPid"
     ) | Tee-Object -FilePath $Output
 
 }
@@ -273,5 +274,36 @@ function Get-SQTSerial {
         "$Device`:5555",
         "get-serialno"
     )
+
+}
+
+function Clear-SQTLogcat {
+
+    param(
+        [string]$Device
+    )
+
+    Invoke-SQTADB @(
+        "-s",
+        "$Device`:5555",
+        "logcat",
+        "-c"
+    )
+
+}
+
+function Test-SQTPackageRunning {
+
+    param(
+
+        [string]$Device,
+
+        [string]$Package
+
+    )
+
+    $appPid = Get-SQTAppProcessId -Device $Device -Package $Package
+
+    return -not [string]::IsNullOrWhiteSpace($appPid)
 
 }

@@ -9,26 +9,32 @@
 # Load Common Files
 # ============================================================
 
-. "$PSScriptRoot\..\common\config.ps1"
-. "$PSScriptRoot\..\common\devices.ps1"
-. "$PSScriptRoot\..\common\adb.ps1"
-. "$PSScriptRoot\..\common\logger.ps1"
-. "$PSScriptRoot\..\common\utils.ps1"
-. "$PSScriptRoot\..\common\menu.ps1"
+. "$PSScriptRoot\common\config.ps1"
+. "$PSScriptRoot\common\devices.ps1"
+. "$PSScriptRoot\common\adb.ps1"
+. "$PSScriptRoot\common\logger.ps1"
+. "$PSScriptRoot\common\utils.ps1"
+. "$PSScriptRoot\common\menu.ps1"
 
 # ============================================================
 # Load Directory Modules
 # ============================================================
 
-. "$PSScriptRoot\modules\DeviceManager.ps1"
-. "$PSScriptRoot\modules\DeviceInfo.ps1"
-. "$PSScriptRoot\modules\Logcat.ps1"
-. "$PSScriptRoot\modules\Screenshot.ps1"
-. "$PSScriptRoot\modules\ScreenRecord.ps1"
-. "$PSScriptRoot\modules\BugReport.ps1"
-. "$PSScriptRoot\modules\Performance.ps1"
-. "$PSScriptRoot\modules\CollectEvidence.ps1"
-. "$PSScriptRoot\modules\Settings.ps1"
+. "$PSScriptRoot\modules\Device\DeviceManager.ps1"
+. "$PSScriptRoot\modules\Device\DeviceInfo.ps1"
+. "$PSScriptRoot\modules\Capture\Logcat.ps1"
+. "$PSScriptRoot\modules\Capture\Screenshot.ps1"
+. "$PSScriptRoot\modules\Capture\ScreenRecord.ps1"
+
+
+# ============================================================
+# Report & settings Modules
+# ============================================================
+
+. "$PSScriptRoot\modules\Report\BugReport.ps1"
+. "$PSScriptRoot\modules\Report\Performance.ps1"
+. "$PSScriptRoot\modules\Report\CollectEvidence.ps1"
+. "$PSScriptRoot\modules\Settings\Settings.ps1"
 
 # ============================================================
 # Main Application
@@ -66,7 +72,7 @@ try {
 
             "1" {
 
-                Connect-SQTDevice
+                Open-SQTDeviceManager
 
             }
 
