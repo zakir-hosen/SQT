@@ -68,3 +68,47 @@ function Save-SQTDevices {
     Set-Content $path
 
 }
+
+function Connect-NewSQTDevice {
+
+    Clear-Host
+
+    Write-Host ""
+    Write-Host "==========================================" -ForegroundColor Cyan
+    Write-Host "        CONNECT TO DEVICE"
+    Write-Host "==========================================" -ForegroundColor Cyan
+    Write-Host ""
+
+    $ip = Read-Host "Enter Device IP"
+
+    if ([string]::IsNullOrWhiteSpace($ip)) {
+
+        Write-SQTLog "No IP entered." "ERROR"
+        Pause-SQT
+        return
+
+    }
+
+    Write-SQTLog "Connecting to $ip..."
+
+    $result = Connect-SQTADB $ip
+
+    Write-Host ""
+    Write-Host $result
+
+    if ($result -match "connected") {
+
+        Set-SQTCurrentDevice -Name $ip -IP $ip
+
+        Write-SQTLog "Connected successfully." "SUCCESS"
+
+    }
+    else {
+
+        Write-SQTLog "Connection failed." "ERROR"
+
+    }
+
+    Pause-SQT
+
+}

@@ -1,9 +1,5 @@
 function Show-MainMenu {
 
-    param(
-        [string]$CurrentDevice = "Not Connected"
-    )
-
     Clear-Host
 
     Write-Host ""
@@ -12,8 +8,20 @@ function Show-MainMenu {
     Write-Host "============================================================" -ForegroundColor Cyan
     Write-Host ""
 
+    $config = Get-SQTConfig
+
     Write-Host "Current Device : " -NoNewline
-    Write-Host $CurrentDevice -ForegroundColor Green
+
+    if ([string]::IsNullOrWhiteSpace($config.CurrentDeviceName)) {
+
+        Write-Host "Not Connected" -ForegroundColor Yellow
+
+    }
+    else {
+
+        Write-Host "$($config.CurrentDeviceName) ($($config.CurrentDevice))" -ForegroundColor Green
+
+    }
 
     Write-Host ""
 

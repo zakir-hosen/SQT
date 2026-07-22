@@ -57,7 +57,7 @@ function Connect-SQTDevice {
 
             "1" {
 
-                Write-SQTLog "Connect Device - Coming Soon"
+                Connect-NewSQTDevice
 
                 Pause-SQT
 

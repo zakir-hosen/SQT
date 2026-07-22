@@ -25,3 +25,21 @@ function Save-SQTConfig {
     $Script:Config | ConvertTo-Json -Depth 5 | Set-Content $configPath
 
 }
+function Set-SQTCurrentDevice {
+
+    param(
+
+        [string]$Name,
+
+        [string]$IP
+
+    )
+
+    $config = Get-SQTConfig
+
+    $config.CurrentDevice = $IP
+    $config.CurrentDeviceName = $Name
+
+    Save-SQTConfig
+
+}
