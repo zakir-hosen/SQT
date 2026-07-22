@@ -20,7 +20,7 @@
 # Load Directory Modules
 # ============================================================
 
-. "$PSScriptRoot\modules\Connect.ps1"
+. "$PSScriptRoot\modules\DeviceManager.ps1"
 . "$PSScriptRoot\modules\DeviceInfo.ps1"
 . "$PSScriptRoot\modules\Logcat.ps1"
 . "$PSScriptRoot\modules\Screenshot.ps1"
