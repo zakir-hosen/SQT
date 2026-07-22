@@ -19,7 +19,7 @@ function Show-MainMenu {
 
     Write-Host "DEVICE" -ForegroundColor Cyan
     Write-Host "------------------------------------------------------------"
-    Write-Host " 1. Device Manager"
+    Write-Host " 1. Connect Device"
     Write-Host " 2. Device Information"
 
     Write-Host ""

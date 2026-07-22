@@ -61,11 +61,11 @@ function Connect-SQTDevice {
 
             "5" {
 
-                Write-SQTLog "Test Connection - Coming Soon"
+    Invoke-SQTADB "version"
 
-                Pause-SQT
+    Pause-SQT
 
-            }
+}
 
             "0" {
 
