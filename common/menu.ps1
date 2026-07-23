@@ -35,21 +35,23 @@ function Show-MainMenu {
     Write-Host "LOGS" -ForegroundColor Cyan
     Write-Host "------------------------------------------------------------"
     Write-Host " 3. Capture Logcat"
-    Write-Host " 4. Screenshot"
-    Write-Host " 5. Screen Recording"
+    Write-Host " 4. Live Log Viewer"
+    Write-Host " 5. Screenshot"
+    Write-Host " 6. Screen Recording"
 
     Write-Host ""
 
     Write-Host "REPORTS" -ForegroundColor Cyan
     Write-Host "------------------------------------------------------------"
-    Write-Host " 6. Collect Evidence"
-    Write-Host " 7. Bug Report"
+    Write-Host " 7. Performance Info"
+    Write-Host " 8. Collect Evidence"
+    Write-Host " 9. Bug Report"
 
     Write-Host ""
 
     Write-Host "SETTINGS" -ForegroundColor Cyan
     Write-Host "------------------------------------------------------------"
-    Write-Host " 8. Settings"
+    Write-Host " 10. Settings"
 
     Write-Host ""
     Write-Host " 0. Exit"

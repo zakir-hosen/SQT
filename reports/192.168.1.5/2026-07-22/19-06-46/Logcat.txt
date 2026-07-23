@@ -1,0 +1,119 @@
+--------- beginning of main
+07-22 19:07:05.914  6978  6978 D SurfaceWORK: surfaceDestroyed:
+07-22 19:07:05.921  6978  7025 W libEGL  : EGLNativeWindowType 0xb400007cb5426900 disconnect failed
+07-22 19:07:05.969  6978  7274 I BpBinder: onLastStrongRef automatically unlinking death recipients: <uncached descriptor>
+07-22 19:07:11.894  6978  6978 I flutter : map is: {platform: android, token: dcgZyUYcR3OFNP2OGLE--c:APA91bHZV__DwaywfKo4fWDocieFomxPpoVr4cW1D46ECknlvJheA6Pt6kpMQp4BEEKCYpDcn7TuWUwD6CsZQshS8rhOTpCSX3CPZ0neQWqEvnJ9sHP7Iy0}
+07-22 19:07:12.179  6978  6978 I AAudio  : AAudioStreamBuilder_openStream() called ----------------------------------------
+07-22 19:07:12.179  6978  6978 I AudioStreamBuilder: rate   =  44100, channels  = 2, format   = 5, sharing = SH, dir = OUTPUT
+07-22 19:07:12.179  6978  6978 I AudioStreamBuilder: device =      0, sessionId = -1, perfMode = 12, callback: ON with frames = 0
+07-22 19:07:12.179  6978  6978 I AudioStreamBuilder: usage  =      0, contentType = 0, inputPreset = 0, allowedCapturePolicy = 0
+07-22 19:07:12.179  6978  6978 I AudioStreamBuilder: privacy sensitive = false
+07-22 19:07:12.179  6978  6978 D unetbd_interco: PlayerBase::PlayerBase()
+07-22 19:07:12.180  6978  6978 D AudioStreamTrack: open(), request notificationFrames = -8, frameCount = 0
+07-22 19:07:12.188  6978  6978 I AudioTrack: createTrack_l(0): AUDIO_OUTPUT_FLAG_FAST successful; frameCount 0 -> 4096
+07-22 19:07:12.189  6978  6978 D AAudioStream: setState(s#10) from 0 to 2
+07-22 19:07:12.189  6978  6978 W AudioStreamTrack: open() flags changed from 0x00000104 to 0x00000004
+07-22 19:07:12.190  6978  6978 I AAudio  : AAudioStreamBuilder_openStream() returns 0 = AAUDIO_OK for s#10 ----------------
+07-22 19:07:12.190  6978  6978 D AAudio  : AAudioStream_requestStart(s#10) called --------------
+07-22 19:07:12.191  6978  6978 D AAudioStream: setState(s#10) from 2 to 3
+07-22 19:07:12.192  6978  6978 D unetbd_interco: PlayerBase::start() from IPlayer
+07-22 19:07:12.193  6978  6978 D AAudio  : AAudioStream_requestStart(s#10) returned 0 ---------
+07-22 19:07:12.207  6978  6994 D AudioStreamLegacy: onAudioDeviceUpdate(deviceId = 2)
+07-22 19:07:12.218  6978 12316 D AAudioStream: setState(s#10) from 3 to 4
+07-22 19:07:12.478  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [googEchoCancellation2: true, googNoiseSuppression: true, googNoiseSuppression2: true, googAutoGainControl2: true, googHighpassFilter: true, googAutoGainControl: false, googEchoCancellation: true], optional: []
+07-22 19:07:12.482  6978  6978 I FlutterWebRTCPlugin: getUserMedia(video): ConstraintsMap{mMap={frameRate=30, facingMode=user, width=320, height=240}}
+07-22 19:07:12.487  6978  6978 D FlutterWebRTCPlugin: Creating video capturer using Camera2 API.
+07-22 19:07:12.489  6978  6978 D FlutterWebRTCPlugin: Create front camera 0 succeeded
+07-22 19:07:12.504  6978  6978 D FlutterWebRTCPlugin: CameraEventsHandler.waitForCameraOpen
+07-22 19:07:12.506  6978 12320 D FlutterWebRTCPlugin: CameraEventsHandler.onCameraOpening: cameraName=0
+07-22 19:07:12.884  6978 12320 D FlutterWebRTCPlugin: CameraEventsHandler.onFirstFrameAvailable
+07-22 19:07:12.891  6978  6978 D FlutterWebRTCPlugin: Target: 320x240@30, Actual: 320x240@30
+07-22 19:07:12.892  6978  6978 D FlutterWebRTCPlugin: MediaStream id: d26e200c-d47f-4d73-9fca-c9827d9a7459
+07-22 19:07:12.910  6978  6978 W FlutterWebRTCPlugin: FlutterRTCVideoRenderer.setVideoTrack, set video track to 3240ecd4-e7fb-4d6b-ba9d-2d94cd3a6f4b
+07-22 19:07:39.862  6978  6978 I flutter : on softphone initiated: false
+07-22 19:07:39.862  6978  6978 I flutter : hangUp Called: true
+07-22 19:07:39.864  6978  6978 D SysFileUtils: write success to value=1
+07-22 19:07:40.808  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:07:40.811  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:07:40.820  6978  6978 I flutter : on add stream called
+07-22 19:07:40.822  6978  6978 W FlutterWebRTCPlugin: FlutterRTCVideoRenderer.setVideoTrack, set video track to a53b96c9-24dc-4ef7-a699-a160685091c3
+07-22 19:07:40.872  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-22 19:07:40.874  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:07:41.145  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 5 lines
+07-22 19:07:41.439  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:07:44.571  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-22 19:07:44.604  6978  6978 I flutter : state is: RTCPeerConnectionState.RTCPeerConnectionStateConnecting
+07-22 19:07:44.981  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-22 19:07:44.982  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-22 19:07:45.034  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-22 19:07:45.035  6978  6978 I flutter : state is: RTCPeerConnectionState.RTCPeerConnectionStateConnected
+07-22 19:07:45.280  6978 12446 I OMXClient: IOmx service obtained
+07-22 19:07:45.286  6978 12445 D SurfaceUtils: connecting to surface 0xb400007cb5218b90, reason connectToSurface
+07-22 19:07:45.286  6978 12445 I MediaCodec: [OMX.rk.video_decoder.vp8] setting surface generation to 7145475
+07-22 19:07:45.286  6978 12445 D SurfaceUtils: disconnecting from surface 0xb400007cb5218b90, reason connectToSurface(reconnect)
+07-22 19:07:45.286  6978 12445 D SurfaceUtils: connecting to surface 0xb400007cb5218b90, reason connectToSurface(reconnect)
+07-22 19:07:45.287  6978 12446 E ACodec  : [OMX.rk.video_decoder.vp8] setPortMode on output to DynamicANWBuffer failed w/ err -1010
+07-22 19:07:45.292  6978 12446 W AHierarchicalStateMachine: Warning message AMessage(what = 'omxI') = {
+07-22 19:07:45.292  6978 12446 W AHierarchicalStateMachine:   int32_t type = 0
+07-22 19:07:45.292  6978 12446 W AHierarchicalStateMachine:   int32_t event = 3
+07-22 19:07:45.292  6978 12446 W AHierarchicalStateMachine:   int32_t data1 = 1
+07-22 19:07:45.292  6978 12446 W AHierarchicalStateMachine:   int32_t data2 = 117440527
+07-22 19:07:45.292  6978 12446 W AHierarchicalStateMachine: } unhandled in root state.
+07-22 19:07:45.300  6978 12446 W ACodec  : setupNativeWindowSizeFormatAndUsage 1138 colorSpace 0, eDyncRange 0
+07-22 19:07:45.300  6978 12446 D SurfaceUtils: disconnecting from surface 0xb400007cb5218b90, reason setNativeWindowSizeFormatAndUsage
+07-22 19:07:45.300  6978 12446 D SurfaceUtils: connecting to surface 0xb400007cb5218b90, reason setNativeWindowSizeFormatAndUsage
+07-22 19:07:45.300  6978 12446 D SurfaceUtils: set up nativeWindow 0xb400007cb5218b90 for 320x240, color 0x15, rotation 0, usage 0x40002900
+07-22 19:08:14.146  6978  6990 I unetbd_interco: Background concurrent copying GC freed 426356(22MB) AllocSpace objects, 51(2260KB) LOS objects, 30% free, 54MB/78MB, paused 170us total 155.827ms
+07-22 19:08:14.321  6978  6978 W PlatformViewsController: Unexpected platform view context for view ID 9; some functionality may not work correctly. When constructing a platform view in the factory, ensure that the view returned from PlatformViewFactory#create returns the provided context from getContext(). If you are unable to associate the view with that context, consider using Hybrid Composition instead.
+07-22 19:08:14.462  6978  6978 D SurfaceWORK: created: true
+07-22 19:08:14.462  6978  6978 D SurfaceWORK: changed: true
+07-22 19:08:14.466  6978  6978 I Thread-8: type=1400 audit(0.0:4829): avc: denied { getattr } for path="/dev/ttyS4" dev="tmpfs" ino=1493 scontext=u:r:untrusted_app:s0:c117,c256,c512,c768 tcontext=u:object_r:serial_device:s0 tclass=chr_file permissive=1 app=bd.sicunet.sicunetbd_intercom
+07-22 19:08:14.588  6978  6978 D AAudio  : AAudioStream_requestStop(s#10) called
+07-22 19:08:14.588  6978  6978 D AAudioStream: setState(s#10) from 4 to 9
+07-22 19:08:14.588  6978  6978 D AudioTrack: stop(85): called with 2755072 frames delivered
+07-22 19:08:14.589  6978  6978 D unetbd_interco: PlayerBase::stop() from IPlayer
+07-22 19:08:14.589  6978  6978 D AAudioStream: setState(s#10) from 9 to 10
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: Session 0: Exception while stopping repeating: 
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: android.hardware.camera2.CameraAccessException: CAMERA_ERROR (3): cancelRequest:459: Camera 0: Error clearing streaming request: Function not implemented (-38)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.hardware.camera2.CameraManager.throwAsPublicException(CameraManager.java:1009)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.hardware.camera2.impl.ICameraDeviceUserWrapper.cancelRequest(ICameraDeviceUserWrapper.java:99)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.hardware.camera2.impl.CameraDeviceImpl.stopRepeating(CameraDeviceImpl.java:1251)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.hardware.camera2.impl.CameraCaptureSessionImpl.close(CameraCaptureSessionImpl.java:578)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.hardware.camera2.impl.CameraCaptureSessionImpl$2.onDisconnected(CameraCaptureSessionImpl.java:789)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.hardware.camera2.impl.CameraDeviceImpl$7.run(CameraDeviceImpl.java:245)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.os.Handler.handleCallback(Handler.java:938)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.os.Looper.loop(Looper.java:223)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.os.HandlerThread.run(HandlerThread.java:67)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: Caused by: android.os.ServiceSpecificException: cancelRequest:459: Camera 0: Error clearing streaming request: Function not implemented (-38) (code 10)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:2387)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.os.Parcel.createException(Parcel.java:2357)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.os.Parcel.readException(Parcel.java:2340)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.os.Parcel.readException(Parcel.java:2282)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.hardware.camera2.ICameraDeviceUser$Stub$Proxy.cancelRequest(ICameraDeviceUser.java:732)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	at android.hardware.camera2.impl.ICameraDeviceUserWrapper.cancelRequest(ICameraDeviceUserWrapper.java:97)
+07-22 19:08:14.719  6978 12320 E CameraCaptureSession: 	... 8 more
+07-22 19:08:14.720  6978 12320 D FlutterWebRTCPlugin: CameraEventsHandler.onCameraDisconnected
+07-22 19:08:14.725  6978 12320 D FlutterWebRTCPlugin: CameraEventsHandler.onFirstFrameAvailable
+07-22 19:08:15.163  6978  6978 D AAudio  : AAudioStream_close(s#10) called ---------------
+07-22 19:08:15.163  6978  6978 D AAudioStream: setState(s#10) from 10 to 11
+07-22 19:08:15.165  6978  6978 D AAudioStream: setState(s#10) from 11 to 12
+07-22 19:08:15.165  6978  6978 D AAudioStream: ~AudioStream(s#10) mPlayerBase strongCount = 2
+07-22 19:08:15.165  6978  6978 D AAudio  : AAudioStream_close(s#10) returned 0 ---------
+07-22 19:08:15.282  6978  6978 D SysFileUtils: write success to value=0
+07-22 19:08:15.300  6978  6978 W FlutterWebRTCPlugin: FlutterRTCVideoRenderer.setVideoTrack, set video track to null
+07-22 19:08:15.302  6978  6978 D FlutterWebRTCPlugin: trackDispose() track is null
+07-22 19:08:15.304  6978  6978 D FlutterWebRTCPlugin: trackDispose() track is null
+07-22 19:08:15.305  6978  6978 D FlutterWebRTCPlugin: streamDispose() mediaStream is null
+07-22 19:08:15.310  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-22 19:08:15.425  6978 12445 D SurfaceUtils: disconnecting from surface 0xb400007cb5218b90, reason disconnectFromSurface
+07-22 19:08:15.459  6978  6978 W FlutterWebRTCPlugin: FlutterRTCVideoRenderer.setVideoTrack, set video track to null
+07-22 19:08:15.468  6978  6978 D FlutterWebRTCPlugin: CameraEventsHandler.waitForCameraClosed
+07-22 19:08:15.484  6978 12415 E BufferQueueProducer: [ImageReader-240x320f22m7-6978-14](id:1b4200000014,api:0,p:-1,c:6978) disconnect: not connected (req=1)
+07-22 19:08:15.484  6978 12415 W libEGL  : EGLNativeWindowType 0xb400007cb532f9c0 disconnect failed
+07-22 19:08:15.498  6978 12355 E BufferQueueProducer: [ImageReader-240x320f22m7-6978-13](id:1b4200000012,api:0,p:-1,c:6978) disconnect: not connected (req=1)
+07-22 19:08:15.498  6978 12355 W libEGL  : EGLNativeWindowType 0xb400007cb52014e0 disconnect failed
+07-22 19:08:15.502  6978  6978 D FlutterWebRTCPlugin: dataChannelClose() dataChannel is null
+07-22 19:08:15.504  6978  6978 D FlutterWebRTCPlugin: dataChannelClose() dataChannel is null
+07-22 19:08:15.514  6978  6978 I flutter : state is: RTCPeerConnectionState.RTCPeerConnectionStateClosed
+07-22 19:08:15.672  6978  6978 I flutter : Cancel status: (null, Success)

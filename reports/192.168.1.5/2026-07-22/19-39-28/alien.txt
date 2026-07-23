@@ -1,0 +1,335 @@
+--------- beginning of main
+07-22 19:39:31.806  6978  6978 D SurfaceWORK: surfaceDestroyed:
+07-22 19:39:31.810  6978  7025 W libEGL  : EGLNativeWindowType 0xb400007cb51bd2e0 disconnect failed
+07-22 19:39:31.835  6978 14109 I BpBinder: onLastStrongRef automatically unlinking death recipients: <uncached descriptor>
+07-22 19:39:34.868  6978  6978 D AAudio  : AAudioStream_requestStop(s#13) called
+07-22 19:39:34.868  6978  6978 D AAudioStream: setState(s#13) from 4 to 9
+07-22 19:39:34.868  6978  6978 D AudioTrack: stop(100): called with 667136 frames delivered
+07-22 19:39:34.869  6978  6978 D unetbd_interco: PlayerBase::stop() from IPlayer
+07-22 19:39:34.869  6978  6978 D AAudioStream: setState(s#13) from 9 to 10
+07-22 19:39:35.402  6978  6978 D AAudio  : AAudioStream_close(s#13) called ---------------
+07-22 19:39:35.402  6978  6978 D AAudioStream: setState(s#13) from 10 to 11
+07-22 19:39:35.404  6978  6978 D AAudioStream: setState(s#13) from 11 to 12
+07-22 19:39:35.404  6978  6978 D AAudioStream: ~AudioStream(s#13) mPlayerBase strongCount = 2
+07-22 19:39:35.404  6978  6978 D AAudio  : AAudioStream_close(s#13) returned 0 ---------
+07-22 19:39:38.123  6978  6978 I flutter : startCall called
+07-22 19:39:38.123  6978  6978 I flutter : phone number is: 8801766244673
+07-22 19:39:42.202  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.clientReady
+07-22 19:39:42.211  6978  6978 D MediaConstraintsUtils: mandatory constraints are not a map
+07-22 19:39:42.211  6978  6978 D MediaConstraintsUtils: optional constraints are not an array
+07-22 19:39:42.211  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [], optional: []
+07-22 19:39:42.213  6978  6978 D FlutterWebRTCPlugin: MediaStream id: 24a7e385-21c9-4836-9ff8-dd00d81a8f98
+07-22 19:39:42.242  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-22 19:39:42.244  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:39:42.246  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-22 19:39:42.250  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:39:42.285  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:39:42.350  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-22 19:39:42.354  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:39:42.890  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:39:43.179  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:39:44.382  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.ringing
+07-22 19:39:44.402  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:39:44.408  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-22 19:39:44.520  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-22 19:39:44.521  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-22 19:39:44.649  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-22 19:39:44.657  6978  6978 I flutter : map data from web socket is: {type: status, status: connecting, detail: Visitor connected — calling resident…, sid: 0dd17d7f-5c97-46f9-808b-13f4592d1ce0}
+07-22 19:39:44.657  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.connecting, phoneNumber: }
+07-22 19:39:44.836  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.answer
+07-22 19:39:44.998  6978  6978 I flutter : map data from web socket is: {type: status, status: dialing_resident, detail: Calling 1 of 1 resident(s), sid: 0dd17d7f-5c97-46f9-808b-13f4592d1ce0}
+07-22 19:39:44.999  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dialing, phoneNumber: }
+07-22 19:39:45.053  6978  6978 I flutter : map data from web socket is: {type: status, status: ringing, detail: Resident phone ringing, sid: 0dd17d7f-5c97-46f9-808b-13f4592d1ce0}
+07-22 19:39:45.053  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.ringing, phoneNumber: }
+07-22 19:39:54.287  6978  6978 I flutter : map data from web socket is: {type: resident_answered, sid: 0dd17d7f-5c97-46f9-808b-13f4592d1ce0, number: +8801766244673, detail: Resident answered — connected}
+07-22 19:39:54.287  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.answered, phoneNumber: 8801766244673}
+07-22 19:39:54.288  6978  6978 I flutter : map data from web socket is: {type: status, status: in_call, detail: Resident answered — connected, sid: 0dd17d7f-5c97-46f9-808b-13f4592d1ce0}
+07-22 19:39:54.288  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.inCall, phoneNumber: 8801766244673}
+07-22 19:39:55.914  6978  6978 I flutter : map data from web socket is: {type: status, status: dtmf_ready, detail: Press 5 on the phone keypad to unlock, sid: 0dd17d7f-5c97-46f9-808b-13f4592d1ce0}
+07-22 19:39:55.915  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dtmfReady, phoneNumber: 8801766244673}
+07-22 19:40:01.354  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.bye
+07-22 19:40:01.404  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-22 19:40:02.027  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended, sid: 0dd17d7f-5c97-46f9-808b-13f4592d1ce0}
+07-22 19:40:02.027  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.unknown, phoneNumber: 8801766244673}
+07-22 19:40:02.028  6978  6978 I flutter : hangUp Called: false
+07-22 19:40:02.029  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: 0dd17d7f-5c97-46f9-808b-13f4592d1ce0, detail: Call ended}
+07-22 19:40:02.029  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: 8801766244673}
+07-22 19:40:02.345  6978  6978 I flutter : hangUp Called: false
+07-22 19:40:03.163  6978  6978 I flutter : Socket closed
+07-22 19:40:07.236  6978  6978 I flutter : startCall called
+07-22 19:40:07.236  6978  6978 I flutter : phone number is: 8801766244673
+07-22 19:40:11.220  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.clientReady
+07-22 19:40:11.229  6978  6978 D MediaConstraintsUtils: mandatory constraints are not a map
+07-22 19:40:11.229  6978  6978 D MediaConstraintsUtils: optional constraints are not an array
+07-22 19:40:11.229  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [], optional: []
+07-22 19:40:11.231  6978  6978 D FlutterWebRTCPlugin: MediaStream id: 33eddec6-e6f2-4155-a88f-ef2da101fb89
+07-22 19:40:11.263  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-22 19:40:11.264  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:11.264  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-22 19:40:11.266  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:11.306  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:11.899  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 3 lines
+07-22 19:40:12.171  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:13.218  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.ringing
+07-22 19:40:13.327  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:40:13.332  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-22 19:40:13.442  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-22 19:40:13.443  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-22 19:40:13.527  6978  6978 I flutter : map data from web socket is: {type: status, status: connecting, detail: Visitor connected — calling resident…, sid: 7aa594e3-d60d-49f7-94eb-a7055c9b372d}
+07-22 19:40:13.527  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.connecting, phoneNumber: }
+07-22 19:40:13.579  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-22 19:40:13.638  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.answer
+07-22 19:40:14.090  6978  6978 I flutter : map data from web socket is: {type: status, status: dialing_resident, detail: Calling 1 of 1 resident(s), sid: 7aa594e3-d60d-49f7-94eb-a7055c9b372d}
+07-22 19:40:14.090  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dialing, phoneNumber: }
+07-22 19:40:14.287  6978  6978 I flutter : map data from web socket is: {type: status, status: ringing, detail: Resident phone ringing, sid: 7aa594e3-d60d-49f7-94eb-a7055c9b372d}
+07-22 19:40:14.288  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.ringing, phoneNumber: }
+07-22 19:40:26.153  6978  6978 I flutter : hangUp Called: false
+07-22 19:40:27.342  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.bye
+07-22 19:40:27.396  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-22 19:40:27.781  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended by visitor, sid: 7aa594e3-d60d-49f7-94eb-a7055c9b372d}
+07-22 19:40:27.781  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEndedByVisitor, phoneNumber: }
+07-22 19:40:27.782  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: 7aa594e3-d60d-49f7-94eb-a7055c9b372d, detail: Call ended by visitor}
+07-22 19:40:27.782  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: }
+07-22 19:40:27.964  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Visitor disconnected, sid: 7aa594e3-d60d-49f7-94eb-a7055c9b372d}
+07-22 19:40:27.964  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.visitorDisconnected, phoneNumber: }
+07-22 19:40:27.964  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: 7aa594e3-d60d-49f7-94eb-a7055c9b372d, detail: Visitor disconnected}
+07-22 19:40:27.964  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: }
+07-22 19:40:28.035  6978  6978 I flutter : Socket closed
+07-22 19:40:30.156  6978  6978 I flutter : startCall called
+07-22 19:40:30.157  6978  6978 I flutter : phone number is: 8801766244673
+07-22 19:40:33.624  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.clientReady
+07-22 19:40:33.648  6978  6978 D MediaConstraintsUtils: mandatory constraints are not a map
+07-22 19:40:33.648  6978  6978 D MediaConstraintsUtils: optional constraints are not an array
+07-22 19:40:33.648  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [], optional: []
+07-22 19:40:33.655  6978  6978 D FlutterWebRTCPlugin: MediaStream id: fb7ff5af-4ce9-48ad-8786-9c0cba5e2e0f
+07-22 19:40:33.697  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-22 19:40:33.700  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:33.701  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:33.703  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:33.740  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:33.804  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-22 19:40:33.807  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:34.393  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:34.683  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:40:35.862  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.ringing
+07-22 19:40:35.875  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:40:35.881  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-22 19:40:36.001  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-22 19:40:36.002  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-22 19:40:36.146  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-22 19:40:36.235  6978  6978 I flutter : map data from web socket is: {type: status, status: connecting, detail: Visitor connected — calling resident…, sid: 03860f15-c5eb-4c09-b705-b08247a6bce7}
+07-22 19:40:36.235  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.connecting, phoneNumber: }
+07-22 19:40:36.333  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.answer
+07-22 19:40:36.693  6978  6978 I flutter : map data from web socket is: {type: status, status: dialing_resident, detail: Calling 1 of 1 resident(s), sid: 03860f15-c5eb-4c09-b705-b08247a6bce7}
+07-22 19:40:36.693  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dialing, phoneNumber: }
+07-22 19:40:37.071  6978  6978 I flutter : map data from web socket is: {type: status, status: ringing, detail: Resident phone ringing, sid: 03860f15-c5eb-4c09-b705-b08247a6bce7}
+07-22 19:40:37.071  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.ringing, phoneNumber: }
+07-22 19:40:48.531  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.bye
+07-22 19:40:48.584  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-22 19:40:49.075  6978  6978 I flutter : map data from web socket is: {type: status, status: busy, detail: Line busy, sid: 03860f15-c5eb-4c09-b705-b08247a6bce7}
+07-22 19:40:49.076  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.busy, phoneNumber: }
+07-22 19:41:22.121  6978  6978 I flutter : hangUp Called: false
+07-22 19:41:23.188  6978  6978 I flutter : Socket closed
+07-22 19:41:24.629  6978  6978 I flutter : startCall called
+07-22 19:41:24.629  6978  6978 I flutter : phone number is: 8801766244673
+07-22 19:41:28.485  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.clientReady
+07-22 19:41:28.501  6978  6978 D MediaConstraintsUtils: mandatory constraints are not a map
+07-22 19:41:28.501  6978  6978 D MediaConstraintsUtils: optional constraints are not an array
+07-22 19:41:28.501  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [], optional: []
+07-22 19:41:28.504  6978  6978 D FlutterWebRTCPlugin: MediaStream id: b8d76203-613b-4e5e-99ff-c26ac4bfbd18
+07-22 19:41:28.543  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-22 19:41:28.546  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:41:28.548  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-22 19:41:28.549  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:41:28.573  6978  6978 I Thread-8: type=1400 audit(0.0:5769): avc: denied { getattr } for path="/dev/ttyS4" dev="tmpfs" ino=1493 scontext=u:r:untrusted_app:s0:c117,c256,c512,c768 tcontext=u:object_r:serial_device:s0 tclass=chr_file permissive=1 app=bd.sicunet.sicunetbd_intercom
+07-22 19:41:28.595  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:41:29.195  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 3 lines
+07-22 19:41:29.477  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:41:30.677  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.ringing
+07-22 19:41:30.690  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:41:30.698  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-22 19:41:30.802  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-22 19:41:30.803  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-22 19:41:30.965  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-22 19:41:31.043  6978  6978 I flutter : map data from web socket is: {type: status, status: connecting, detail: Visitor connected — calling resident…, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa}
+07-22 19:41:31.043  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.connecting, phoneNumber: }
+07-22 19:41:31.120  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.answer
+07-22 19:41:31.586  6978  6978 I flutter : map data from web socket is: {type: status, status: dialing_resident, detail: Calling 1 of 1 resident(s), sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa}
+07-22 19:41:31.586  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dialing, phoneNumber: }
+07-22 19:41:31.903  6978  6978 I flutter : map data from web socket is: {type: status, status: ringing, detail: Resident phone ringing, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa}
+07-22 19:41:31.903  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.ringing, phoneNumber: }
+07-22 19:41:39.157  6978  6978 I flutter : map data from web socket is: {type: resident_answered, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa, number: +8801766244673, detail: Resident answered — connected}
+07-22 19:41:39.157  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.answered, phoneNumber: 8801766244673}
+07-22 19:41:39.158  6978  6978 I flutter : map data from web socket is: {type: status, status: in_call, detail: Resident answered — connected, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa}
+07-22 19:41:39.158  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.inCall, phoneNumber: 8801766244673}
+07-22 19:41:41.511  6978  6978 I flutter : map data from web socket is: {type: status, status: dtmf_ready, detail: Press 5 on the phone keypad to unlock, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa}
+07-22 19:41:41.512  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dtmfReady, phoneNumber: 8801766244673}
+07-22 19:41:47.235  6978  6978 I flutter : hangUp Called: false
+07-22 19:41:47.237  6978  6978 I flutter : map data from web socket is: {type: dtmf, digit: 5, action: approve, label: Access granted, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa, all: [5], source: telnyx, call_control_id: v3:jkQw0wZzkyKwXU6gejLyx5db7aWL3DEoqDM8ApGBneO2uRlsmJroPg, ts: 2026-07-22T13:41:46.087441+00:00, functional: true}
+07-22 19:41:47.237  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.accessGranted, phoneNumber: 8801766244673}
+07-22 19:41:47.288  6978  6978 W PlatformViewsController: Unexpected platform view context for view ID 16; some functionality may not work correctly. When constructing a platform view in the factory, ensure that the view returned from PlatformViewFactory#create returns the provided context from getContext(). If you are unable to associate the view with that context, consider using Hybrid Composition instead.
+07-22 19:41:47.418  6978  6978 D SurfaceWORK: created: true
+07-22 19:41:47.419  6978  6978 D SurfaceWORK: changed: true
+07-22 19:41:47.573  6978  6978 I flutter : hangUp Called: false
+07-22 19:41:48.645  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.bye
+07-22 19:41:48.686  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-22 19:41:49.237  6978  6978 I flutter : final command is: export LD_LIBRARY_PATH=/data/libs
+07-22 19:41:49.237  6978  6978 I flutter : data/jupiter/bin/jupiter-command admin credential "FormatType=8&PersonNo=13"
+07-22 19:41:49.326  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended by visitor, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa}
+07-22 19:41:49.326  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEndedByVisitor, phoneNumber: 8801766244673}
+07-22 19:41:49.331  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa, detail: Call ended by visitor}
+07-22 19:41:49.331  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: 8801766244673}
+07-22 19:41:49.332  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended by visitor, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa}
+07-22 19:41:49.332  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEndedByVisitor, phoneNumber: 8801766244673}
+07-22 19:41:49.333  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa, detail: Call ended by visitor}
+07-22 19:41:49.333  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: 8801766244673}
+07-22 19:41:49.340  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa}
+07-22 19:41:49.340  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.unknown, phoneNumber: }
+07-22 19:41:49.344  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: b2c6e1dd-183d-44c0-9669-2bd240fafefa, detail: Call ended}
+07-22 19:41:49.344  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: }
+07-22 19:41:49.585  6978  6978 D SysFileUtils: write success to value=1
+07-22 19:41:49.686  6978  6978 I flutter : messagecontrol: {ImageUrl: , Message: Access Granted In, Name: Zakir Hosen, PersonImage: 0}
+07-22 19:41:49.687  6978  6978 I AAudio  : AAudioStreamBuilder_openStream() called ----------------------------------------
+07-22 19:41:49.687  6978  6978 I AudioStreamBuilder: rate   =  44100, channels  = 2, format   = 5, sharing = SH, dir = OUTPUT
+07-22 19:41:49.687  6978  6978 I AudioStreamBuilder: device =      0, sessionId = -1, perfMode = 12, callback: ON with frames = 0
+07-22 19:41:49.687  6978  6978 I AudioStreamBuilder: usage  =      0, contentType = 0, inputPreset = 0, allowedCapturePolicy = 0
+07-22 19:41:49.687  6978  6978 I AudioStreamBuilder: privacy sensitive = false
+07-22 19:41:49.687  6978  6978 D unetbd_interco: PlayerBase::PlayerBase()
+07-22 19:41:49.688  6978  6978 D AudioStreamTrack: open(), request notificationFrames = -8, frameCount = 0
+07-22 19:41:49.697  6978  6978 I AudioTrack: createTrack_l(0): AUDIO_OUTPUT_FLAG_FAST successful; frameCount 0 -> 4096
+07-22 19:41:49.697  6978  6978 D AAudioStream: setState(s#14) from 0 to 2
+07-22 19:41:49.698  6978  6978 W AudioStreamTrack: open() flags changed from 0x00000104 to 0x00000004
+07-22 19:41:49.699  6978  6978 I AAudio  : AAudioStreamBuilder_openStream() returns 0 = AAUDIO_OK for s#14 ----------------
+07-22 19:41:49.699  6978  6978 D AAudio  : AAudioStream_requestStart(s#14) called --------------
+07-22 19:41:49.699  6978  6978 D AAudioStream: setState(s#14) from 2 to 3
+07-22 19:41:49.701  6978  6978 D unetbd_interco: PlayerBase::start() from IPlayer
+07-22 19:41:49.702  6978  6978 D AAudio  : AAudioStream_requestStart(s#14) returned 0 ---------
+07-22 19:41:49.720  6978 14109 D AudioStreamLegacy: onAudioDeviceUpdate(deviceId = 2)
+07-22 19:41:49.730  6978 17861 D AAudioStream: setState(s#14) from 3 to 4
+07-22 19:41:49.760  6978  6978 I flutter : Socket closed
+07-22 19:41:49.774  6978  6978 I flutter : result unlock is: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-22 19:41:49.836  6978  6978 D SysFileUtils: write success to value=0
+07-22 19:41:49.837  6978  6978 D SysFileUtils: write success to value=1
+07-22 19:41:49.846  6978  6978 I flutter : from io control unlock: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-22 19:41:52.433  6978  6978 D SurfaceWORK: surfaceDestroyed:
+07-22 19:41:52.440  6978  7025 W libEGL  : EGLNativeWindowType 0xb400007cb5152bc0 disconnect failed
+07-22 19:41:52.465  6978 10646 E BufferQueueProducer: [ImageReader-703x1f22m7-6978-22](id:1b420000001c,api:1,p:174,c:6978) queueBuffer: BufferQueue has been abandoned
+07-22 19:41:52.469  6978 10646 E BufferQueueProducer: [ImageReader-703x1f22m7-6978-22](id:1b420000001c,api:1,p:174,c:6978) cancelBuffer: BufferQueue has been abandoned
+07-22 19:41:52.480  6978 10646 I BpBinder: onLastStrongRef automatically unlinking death recipients: <uncached descriptor>
+07-22 19:41:52.788  6978  6978 D SysFileUtils: write success to value=0
+07-22 19:41:52.924  6978  6978 D SysFileUtils: write success to value=0
+07-22 19:41:52.924  6978  6978 D SysFileUtils: write success to value=1
+07-22 19:41:52.931  6978  6978 I flutter : from io control lock: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-22 19:41:54.723  6978  6978 I flutter : total mismatch found: 0
+07-22 19:41:57.458  6978  6978 I flutter : startCall called
+07-22 19:41:57.458  6978  6978 I flutter : phone number is: 8801766244673
+07-22 19:42:01.505  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.clientReady
+07-22 19:42:01.512  6978  6978 D MediaConstraintsUtils: mandatory constraints are not a map
+07-22 19:42:01.513  6978  6978 D MediaConstraintsUtils: optional constraints are not an array
+07-22 19:42:01.513  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [], optional: []
+07-22 19:42:01.515  6978  6978 D FlutterWebRTCPlugin: MediaStream id: 0e6ec082-bf2e-4811-8015-726bdb90f4d5
+07-22 19:42:01.545  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-22 19:42:01.546  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:42:01.547  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-22 19:42:01.548  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:42:01.615  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:42:01.651  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 2 lines
+07-22 19:42:02.267  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:42:02.541  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:42:03.289  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.ringing
+07-22 19:42:03.299  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:42:03.304  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-22 19:42:03.412  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-22 19:42:03.412  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-22 19:42:03.549  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-22 19:42:03.838  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.answer
+07-22 19:42:03.949  6978  6978 I flutter : map data from web socket is: {type: status, status: connecting, detail: Visitor connected — calling resident…, sid: ad8a6e65-8bea-4bf9-a61e-2e4fe5619d30}
+07-22 19:42:03.949  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.connecting, phoneNumber: }
+07-22 19:42:04.295  6978  6978 I flutter : map data from web socket is: {type: status, status: dialing_resident, detail: Calling 1 of 1 resident(s), sid: ad8a6e65-8bea-4bf9-a61e-2e4fe5619d30}
+07-22 19:42:04.295  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dialing, phoneNumber: }
+07-22 19:42:04.389  6978  6978 I flutter : map data from web socket is: {type: status, status: ringing, detail: Resident phone ringing, sid: ad8a6e65-8bea-4bf9-a61e-2e4fe5619d30}
+07-22 19:42:04.389  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.ringing, phoneNumber: }
+07-22 19:42:04.771  6978  6978 D AAudio  : AAudioStream_requestStop(s#14) called
+07-22 19:42:04.771  6978  6978 D AAudioStream: setState(s#14) from 4 to 9
+07-22 19:42:04.771  6978  6978 D AudioTrack: stop(113): called with 667648 frames delivered
+07-22 19:42:04.771  6978  6978 D unetbd_interco: PlayerBase::stop() from IPlayer
+07-22 19:42:04.771  6978  6978 D AAudioStream: setState(s#14) from 9 to 10
+07-22 19:42:05.322  6978  6978 D AAudio  : AAudioStream_close(s#14) called ---------------
+07-22 19:42:05.322  6978  6978 D AAudioStream: setState(s#14) from 10 to 11
+07-22 19:42:05.325  6978  6978 D AAudioStream: setState(s#14) from 11 to 12
+07-22 19:42:05.327  6978  6978 D AAudioStream: ~AudioStream(s#14) mPlayerBase strongCount = 2
+07-22 19:42:05.327  6978  6978 D AAudio  : AAudioStream_close(s#14) returned 0 ---------
+07-22 19:42:13.498  6978  6978 I flutter : map data from web socket is: {type: resident_answered, sid: ad8a6e65-8bea-4bf9-a61e-2e4fe5619d30, number: +8801766244673, detail: Resident answered — connected}
+07-22 19:42:13.499  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.answered, phoneNumber: 8801766244673}
+07-22 19:42:13.504  6978  6978 I flutter : map data from web socket is: {type: status, status: in_call, detail: Resident answered — connected, sid: ad8a6e65-8bea-4bf9-a61e-2e4fe5619d30}
+07-22 19:42:13.504  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.inCall, phoneNumber: 8801766244673}
+07-22 19:42:15.029  6978  6978 I flutter : map data from web socket is: {type: status, status: dtmf_ready, detail: Press 5 on the phone keypad to unlock, sid: ad8a6e65-8bea-4bf9-a61e-2e4fe5619d30}
+07-22 19:42:15.029  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dtmfReady, phoneNumber: 8801766244673}
+07-22 19:42:30.685  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.bye
+07-22 19:42:30.738  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-22 19:42:31.483  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended, sid: ad8a6e65-8bea-4bf9-a61e-2e4fe5619d30}
+07-22 19:42:31.483  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.unknown, phoneNumber: 8801766244673}
+07-22 19:42:31.485  6978  6978 I flutter : hangUp Called: false
+07-22 19:42:31.487  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: ad8a6e65-8bea-4bf9-a61e-2e4fe5619d30, detail: Call ended}
+07-22 19:42:31.487  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: 8801766244673}
+07-22 19:42:31.806  6978  6978 I flutter : hangUp Called: false
+07-22 19:42:32.583  6978  6978 I flutter : Socket closed
+07-22 19:42:52.464  6978  6978 W PlatformViewsController: Unexpected platform view context for view ID 17; some functionality may not work correctly. When constructing a platform view in the factory, ensure that the view returned from PlatformViewFactory#create returns the provided context from getContext(). If you are unable to associate the view with that context, consider using Hybrid Composition instead.
+07-22 19:42:52.527  6978  6978 D SurfaceWORK: created: true
+07-22 19:42:52.527  6978  6978 D SurfaceWORK: changed: true
+07-22 19:43:22.195  6978  6978 D SurfaceWORK: surfaceDestroyed:
+07-22 19:43:22.201  6978  7025 W libEGL  : EGLNativeWindowType 0xb400007cb543dfb0 disconnect failed
+07-22 19:43:22.223  6978  8041 I BpBinder: onLastStrongRef automatically unlinking death recipients: <uncached descriptor>
+07-22 19:43:27.602  6978  6978 I flutter : startCall called
+07-22 19:43:27.602  6978  6978 I flutter : phone number is: 8801766244673
+07-22 19:43:31.805  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.clientReady
+07-22 19:43:31.829  6978  6978 D MediaConstraintsUtils: mandatory constraints are not a map
+07-22 19:43:31.830  6978  6978 D MediaConstraintsUtils: optional constraints are not an array
+07-22 19:43:31.830  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [], optional: []
+07-22 19:43:31.837  6978  6978 D FlutterWebRTCPlugin: MediaStream id: 86c21b76-939b-4512-a657-0897ed62cca8
+07-22 19:43:31.882  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-22 19:43:31.884  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:43:31.887  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:43:31.887  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:43:31.988  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:43:31.990  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-22 19:43:31.997  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:43:32.636  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:43:32.898  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:43:33.835  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.ringing
+07-22 19:43:33.844  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:43:33.848  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-22 19:43:33.945  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-22 19:43:33.946  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-22 19:43:34.091  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-22 19:43:34.684  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.answer
+07-22 19:43:34.819  6978  6978 I flutter : map data from web socket is: {type: status, status: connecting, detail: Visitor connected — calling resident…, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133}
+07-22 19:43:34.819  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.connecting, phoneNumber: }
+07-22 19:43:35.302  6978  6978 I flutter : map data from web socket is: {type: status, status: dialing_resident, detail: Calling 1 of 1 resident(s), sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133}
+07-22 19:43:35.302  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dialing, phoneNumber: }
+07-22 19:43:35.447  6978  6978 I flutter : map data from web socket is: {type: status, status: ringing, detail: Resident phone ringing, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133}
+07-22 19:43:35.447  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.ringing, phoneNumber: }
+07-22 19:44:04.541  6978  6978 I flutter : map data from web socket is: {type: resident_answered, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133, number: +8801766244673, detail: Resident answered — connected}
+07-22 19:44:04.541  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.answered, phoneNumber: 8801766244673}
+07-22 19:44:04.546  6978  6978 I flutter : map data from web socket is: {type: status, status: in_call, detail: Resident answered — connected, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133}
+07-22 19:44:04.546  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.inCall, phoneNumber: 8801766244673}
+07-22 19:44:06.660  6978  6978 I flutter : map data from web socket is: {type: status, status: dtmf_ready, detail: Press 5 on the phone keypad to unlock, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133}
+07-22 19:44:06.660  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dtmfReady, phoneNumber: 8801766244673}
+07-22 19:45:06.547  6978  6978 I flutter : hangUp Called: false
+07-22 19:45:07.600  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.bye
+07-22 19:45:07.675  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-22 19:45:08.410  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended by visitor, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133}
+07-22 19:45:08.410  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEndedByVisitor, phoneNumber: 8801766244673}
+07-22 19:45:08.413  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133, detail: Call ended by visitor}
+07-22 19:45:08.413  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: 8801766244673}
+07-22 19:45:08.451  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133}
+07-22 19:45:08.451  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.unknown, phoneNumber: }
+07-22 19:45:08.451  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: 9a4a1230-4b9b-4bfc-abe6-d61be1a08133, detail: Call ended}
+07-22 19:45:08.451  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: }
+07-22 19:45:08.684  6978  6978 I flutter : Socket closed
+07-22 19:45:22.216  6978  6978 W PlatformViewsController: Unexpected platform view context for view ID 18; some functionality may not work correctly. When constructing a platform view in the factory, ensure that the view returned from PlatformViewFactory#create returns the provided context from getContext(). If you are unable to associate the view with that context, consider using Hybrid Composition instead.
+07-22 19:45:22.280  6978  6978 D SurfaceWORK: created: true
+07-22 19:45:22.280  6978  6978 D SurfaceWORK: changed: true
+
+last one 
+alien call :) 

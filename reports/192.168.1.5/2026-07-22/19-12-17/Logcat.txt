@@ -1,0 +1,86 @@
+--------- beginning of main
+07-22 19:12:27.093  6978  6978 I flutter : startCall called
+07-22 19:12:27.093  6978  6978 I flutter : phone number is: 8801766244673
+07-22 19:12:31.254  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.clientReady
+07-22 19:12:31.268  6978  6978 D MediaConstraintsUtils: mandatory constraints are not a map
+07-22 19:12:31.268  6978  6978 D MediaConstraintsUtils: optional constraints are not an array
+07-22 19:12:31.268  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [], optional: []
+07-22 19:12:31.275  6978  6978 D FlutterWebRTCPlugin: MediaStream id: ec630ab7-bca6-4513-80b3-6b740ba2544d
+07-22 19:12:31.312  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-22 19:12:31.313  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:12:31.314  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-22 19:12:31.318  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:12:31.353  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:12:31.420  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 2 lines
+07-22 19:12:32.044  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:12:32.340  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-22 19:12:33.161  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.ringing
+07-22 19:12:33.169  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-22 19:12:33.172  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-22 19:12:33.267  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-22 19:12:33.267  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-22 19:12:33.401  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-22 19:12:33.609  6978  6978 I flutter : map data from web socket is: {type: status, status: connecting, detail: Visitor connected — calling resident…, sid: 353d60ae-484b-446d-b4b3-31653a1f9d15}
+07-22 19:12:33.609  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.connecting, phoneNumber: }
+07-22 19:12:33.695  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.answer
+07-22 19:12:34.283  6978  6978 I flutter : map data from web socket is: {type: status, status: dialing_resident, detail: Calling 1 of 1 resident(s), sid: 353d60ae-484b-446d-b4b3-31653a1f9d15}
+07-22 19:12:34.283  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dialing, phoneNumber: }
+07-22 19:12:34.495  6978  6978 I flutter : map data from web socket is: {type: status, status: ringing, detail: Resident phone ringing, sid: 353d60ae-484b-446d-b4b3-31653a1f9d15}
+07-22 19:12:34.495  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.ringing, phoneNumber: }
+07-22 19:12:41.054  6978  6978 I flutter : map data from web socket is: {type: resident_answered, sid: 353d60ae-484b-446d-b4b3-31653a1f9d15, number: +8801766244673, detail: Resident answered — connected}
+07-22 19:12:41.054  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.answered, phoneNumber: 8801766244673}
+07-22 19:12:41.057  6978  6978 I flutter : map data from web socket is: {type: status, status: in_call, detail: Resident answered — connected, sid: 353d60ae-484b-446d-b4b3-31653a1f9d15}
+07-22 19:12:41.057  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.inCall, phoneNumber: 8801766244673}
+07-22 19:12:43.092  6978  6978 I flutter : map data from web socket is: {type: status, status: dtmf_ready, detail: Press 5 on the phone keypad to unlock, sid: 353d60ae-484b-446d-b4b3-31653a1f9d15}
+07-22 19:12:43.092  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dtmfReady, phoneNumber: 8801766244673}
+07-22 19:12:55.377  6978  6978 I flutter : hangUp Called: false
+07-22 19:12:55.379  6978  6978 I flutter : map data from web socket is: {type: dtmf, digit: 5, action: approve, label: Access granted, sid: 353d60ae-484b-446d-b4b3-31653a1f9d15, all: [5], source: telnyx, call_control_id: v3:wOL8F81nBiptL8k40iq1UHic4aLnJ8VwtzTRIJqQg6aZmB67dvDBJw, ts: 2026-07-22T13:12:54.187652+00:00, functional: true}
+07-22 19:12:55.379  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.accessGranted, phoneNumber: 8801766244673}
+07-22 19:12:55.429  6978  6978 W PlatformViewsController: Unexpected platform view context for view ID 12; some functionality may not work correctly. When constructing a platform view in the factory, ensure that the view returned from PlatformViewFactory#create returns the provided context from getContext(). If you are unable to associate the view with that context, consider using Hybrid Composition instead.
+07-22 19:12:55.560  6978  6978 D SurfaceWORK: created: true
+07-22 19:12:55.560  6978  6978 D SurfaceWORK: changed: true
+07-22 19:12:55.701  6978  6978 I flutter : hangUp Called: false
+07-22 19:12:56.533  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.bye
+07-22 19:12:56.620  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-22 19:12:56.861  6978  6978 I flutter : Socket closed
+07-22 19:12:57.380  6978  6978 I flutter : final command is: export LD_LIBRARY_PATH=/data/libs
+07-22 19:12:57.380  6978  6978 I flutter : data/jupiter/bin/jupiter-command admin credential "FormatType=8&PersonNo=13"
+07-22 19:12:57.697  6978  6978 D SysFileUtils: write success to value=1
+07-22 19:12:57.813  6978  6978 I flutter : messagecontrol: {ImageUrl: , Message: Access Granted In, Name: Zakir Hosen, PersonImage: 0}
+07-22 19:12:57.814  6978  6978 I AAudio  : AAudioStreamBuilder_openStream() called ----------------------------------------
+07-22 19:12:57.814  6978  6978 I AudioStreamBuilder: rate   =  44100, channels  = 2, format   = 5, sharing = SH, dir = OUTPUT
+07-22 19:12:57.814  6978  6978 I AudioStreamBuilder: device =      0, sessionId = -1, perfMode = 12, callback: ON with frames = 0
+07-22 19:12:57.814  6978  6978 I AudioStreamBuilder: usage  =      0, contentType = 0, inputPreset = 0, allowedCapturePolicy = 0
+07-22 19:12:57.814  6978  6978 I AudioStreamBuilder: privacy sensitive = false
+07-22 19:12:57.814  6978  6978 D unetbd_interco: PlayerBase::PlayerBase()
+07-22 19:12:57.816  6978  6978 D AudioStreamTrack: open(), request notificationFrames = -8, frameCount = 0
+07-22 19:12:57.824  6978  6978 I AudioTrack: createTrack_l(0): AUDIO_OUTPUT_FLAG_FAST successful; frameCount 0 -> 4096
+07-22 19:12:57.825  6978  6978 D AAudioStream: setState(s#12) from 0 to 2
+07-22 19:12:57.825  6978  6978 W AudioStreamTrack: open() flags changed from 0x00000104 to 0x00000004
+07-22 19:12:57.827  6978  6978 I AAudio  : AAudioStreamBuilder_openStream() returns 0 = AAUDIO_OK for s#12 ----------------
+07-22 19:12:57.827  6978  6978 D AAudio  : AAudioStream_requestStart(s#12) called --------------
+07-22 19:12:57.827  6978  6978 D AAudioStream: setState(s#12) from 2 to 3
+07-22 19:12:57.834  6978  6978 D unetbd_interco: PlayerBase::start() from IPlayer
+07-22 19:12:57.834  6978  6978 D AAudio  : AAudioStream_requestStart(s#12) returned 0 ---------
+07-22 19:12:57.836  6978 10421 D AudioStreamLegacy: onAudioDeviceUpdate(deviceId = 2)
+07-22 19:12:57.846  6978 13554 D AAudioStream: setState(s#12) from 3 to 4
+07-22 19:12:57.877  6978  6978 I flutter : result unlock is: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-22 19:12:57.990  6978  6978 D SysFileUtils: write success to value=0
+07-22 19:12:57.991  6978  6978 D SysFileUtils: write success to value=1
+07-22 19:12:58.005  6978  6978 I flutter : from io control unlock: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-22 19:13:00.478  6978  6978 D SysFileUtils: write success to value=0
+07-22 19:13:00.684  6978  6978 D SysFileUtils: write success to value=0
+07-22 19:13:00.688  6978  6978 D SysFileUtils: write success to value=1
+07-22 19:13:00.705  6978  6978 I flutter : from io control lock: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-22 19:13:01.244  6978  6978 I flutter : total mismatch found: 0
+07-22 19:13:12.876  6978  6978 D AAudio  : AAudioStream_requestStop(s#12) called
+07-22 19:13:12.876  6978  6978 D AAudioStream: setState(s#12) from 4 to 9
+07-22 19:13:12.876  6978  6978 D AudioTrack: stop(93): called with 667136 frames delivered
+07-22 19:13:12.877  6978  6978 D unetbd_interco: PlayerBase::stop() from IPlayer
+07-22 19:13:12.877  6978  6978 D AAudioStream: setState(s#12) from 9 to 10
+07-22 19:13:13.421  6978  6978 D AAudio  : AAudioStream_close(s#12) called ---------------
+07-22 19:13:13.422  6978  6978 D AAudioStream: setState(s#12) from 10 to 11
+07-22 19:13:13.423  6978  6978 D AAudioStream: setState(s#12) from 11 to 12
+07-22 19:13:13.424  6978  6978 D AAudioStream: ~AudioStream(s#12) mPlayerBase strongCount = 2
+07-22 19:13:13.424  6978  6978 D AAudio  : AAudioStream_close(s#12) returned 0 ---------
+07-22 19:13:16.930  6978  6990 I unetbd_interco: Background concurrent copying GC freed 346902(21MB) AllocSpace objects, 49(2144KB) LOS objects, 30% free, 54MB/78MB, paused 205us total 100.818ms

@@ -3,6 +3,7 @@
     "Version":  "1.0.0",
     "ADBPath":  "C:\\Users\\Zakir\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
     "Package":  "bd.sicunet.sicunetbd_intercom",
-    "CurrentDevice":  "192.168.1.28",
-    "CurrentDeviceName":  "192.168.1.28"
+    "ReportDir":  "reports\\Directory",
+    "CurrentDevice":  "192.168.1.53",
+    "CurrentDeviceName":  "192.168.1.53"
 }

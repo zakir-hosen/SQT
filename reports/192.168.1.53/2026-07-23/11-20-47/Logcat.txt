@@ -1,0 +1,89 @@
+--------- beginning of main
+07-23 11:20:56.137  6978  6978 I flutter : startCall called
+07-23 11:20:56.137  6978  6978 I flutter : phone number is: 8801766244673
+07-23 11:20:59.122  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.clientReady
+07-23 11:20:59.135  6978  6978 D MediaConstraintsUtils: mandatory constraints are not a map
+07-23 11:20:59.135  6978  6978 D MediaConstraintsUtils: optional constraints are not an array
+07-23 11:20:59.135  6978  6978 I FlutterWebRTCPlugin: getUserMedia(audio): mandatory: [], optional: []
+07-23 11:20:59.139  6978  6978 D FlutterWebRTCPlugin: MediaStream id: 0100ece5-2259-42a3-a7df-bfd746b98858
+07-23 11:20:59.173  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeGATHERING
+07-23 11:20:59.175  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-23 11:20:59.177  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-23 11:20:59.178  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-23 11:20:59.215  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-23 11:20:59.278  6978  8374 I chatty  : uid=10117(bd.sicunet.sicunetbd_intercom) signaling_threa identical 1 line
+07-23 11:20:59.281  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-23 11:20:59.971  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-23 11:21:00.265  6978  8374 D FlutterWebRTCPlugin: onIceCandidate
+07-23 11:21:00.649  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.ringing
+07-23 11:21:00.663  6978  8374 D FlutterWebRTCPlugin: onAddTrack
+07-23 11:21:00.669  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTING
+07-23 11:21:00.787  6978  8374 D FlutterWebRTCPlugin: onSelectedCandidatePairChanged
+07-23 11:21:00.788  6978  8374 D FlutterWebRTCPlugin: onIceGatheringChangeCOMPLETE
+07-23 11:21:00.951  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCONNECTED
+07-23 11:21:01.135  6978  6978 I flutter : map data from web socket is: {type: status, status: connecting, detail: Visitor connected — calling resident…, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693}
+07-23 11:21:01.135  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.connecting, phoneNumber: }
+07-23 11:21:01.215  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.answer
+07-23 11:21:01.954  6978  6978 I flutter : map data from web socket is: {type: status, status: dialing_resident, detail: Calling 1 of 1 resident(s), sid: 1e78b009-525f-42ef-91b5-92c50ce9c693}
+07-23 11:21:01.954  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dialing, phoneNumber: }
+07-23 11:21:02.400  6978  6978 I flutter : map data from web socket is: {type: status, status: ringing, detail: Resident phone ringing, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693}
+07-23 11:21:02.400  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.ringing, phoneNumber: }
+07-23 11:21:12.402  6978  6978 I flutter : map data from web socket is: {type: resident_answered, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693, number: +8801766244673, detail: Resident answered — connected}
+07-23 11:21:12.402  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.answered, phoneNumber: 8801766244673}
+07-23 11:21:12.404  6978  6978 I flutter : map data from web socket is: {type: status, status: in_call, detail: Resident answered — connected, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693}
+07-23 11:21:12.404  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.inCall, phoneNumber: 8801766244673}
+07-23 11:21:14.613  6978  6978 I flutter : map data from web socket is: {type: status, status: dtmf_ready, detail: Press 5 on the phone keypad to unlock, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693}
+07-23 11:21:14.613  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.dtmfReady, phoneNumber: 8801766244673}
+07-23 11:21:19.458  6978  6978 I flutter : hangUp Called: false
+07-23 11:21:19.460  6978  6978 I flutter : map data from web socket is: {type: dtmf, digit: 5, action: approve, label: Access granted, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693, all: [5], source: telnyx, call_control_id: v3:YTmHlaABfj62XaoZ5aeXI-IzghBbRPxiSHZitlpl4DHq4I0ophsOuA, ts: 2026-07-23T05:21:19.800509+00:00, functional: true}
+07-23 11:21:19.460  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.accessGranted, phoneNumber: 8801766244673}
+07-23 11:21:19.498  6978  6978 W PlatformViewsController: Unexpected platform view context for view ID 35; some functionality may not work correctly. When constructing a platform view in the factory, ensure that the view returned from PlatformViewFactory#create returns the provided context from getContext(). If you are unable to associate the view with that context, consider using Hybrid Composition instead.
+07-23 11:21:19.638  6978  6978 D SurfaceWORK: created: true
+07-23 11:21:19.638  6978  6978 D SurfaceWORK: changed: true
+07-23 11:21:19.781  6978  6978 I flutter : hangUp Called: false
+07-23 11:21:20.832  6978  6990 I unetbd_interco: Background concurrent copying GC freed 306457(20MB) AllocSpace objects, 47(2104KB) LOS objects, 30% free, 54MB/78MB, paused 185us total 135.740ms
+07-23 11:21:20.889  6978  6978 I flutter : socket message form SDK is: telnyx_rtc.bye
+07-23 11:21:20.926  6978  8374 D FlutterWebRTCPlugin: onConnectionChangeCLOSED
+07-23 11:21:21.443  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended by visitor, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693}
+07-23 11:21:21.443  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEndedByVisitor, phoneNumber: }
+07-23 11:21:21.445  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693, detail: Call ended by visitor}
+07-23 11:21:21.445  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: }
+07-23 11:21:21.461  6978  6978 I flutter : final command is: export LD_LIBRARY_PATH=/data/libs
+07-23 11:21:21.461  6978  6978 I flutter : data/jupiter/bin/jupiter-command admin credential "FormatType=8&PersonNo=13"
+07-23 11:21:21.599  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693}
+07-23 11:21:21.599  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.unknown, phoneNumber: }
+07-23 11:21:21.602  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693, detail: Call ended}
+07-23 11:21:21.602  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: }
+07-23 11:21:21.615  6978  6978 I flutter : map data from web socket is: {type: status, status: ended, detail: Call ended by visitor, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693}
+07-23 11:21:21.615  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEndedByVisitor, phoneNumber: }
+07-23 11:21:21.618  6978  6978 I flutter : map data from web socket is: {type: call_ended, sid: 1e78b009-525f-42ef-91b5-92c50ce9c693, detail: Call ended by visitor}
+07-23 11:21:21.618  6978  6978 I flutter : Telnyx data from web socket is: TelNyxData{status: TelNyxStatus.callEnded, phoneNumber: }
+07-23 11:21:21.711  6978  6978 I flutter : Socket closed
+07-23 11:21:21.775  6978  6978 D SysFileUtils: write success to value=1
+07-23 11:21:21.880  6978  6978 I flutter : messagecontrol: {ImageUrl: , Message: Access Granted In, Name: Zakir Hosen, PersonImage: 0}
+07-23 11:21:21.885  6978  6978 I AAudio  : AAudioStreamBuilder_openStream() called ----------------------------------------
+07-23 11:21:21.885  6978  6978 I AudioStreamBuilder: rate   =  44100, channels  = 2, format   = 5, sharing = SH, dir = OUTPUT
+07-23 11:21:21.885  6978  6978 I AudioStreamBuilder: device =      0, sessionId = -1, perfMode = 12, callback: ON with frames = 0
+07-23 11:21:21.885  6978  6978 I AudioStreamBuilder: usage  =      0, contentType = 0, inputPreset = 0, allowedCapturePolicy = 0
+07-23 11:21:21.885  6978  6978 I AudioStreamBuilder: privacy sensitive = false
+07-23 11:21:21.885  6978  6978 D unetbd_interco: PlayerBase::PlayerBase()
+07-23 11:21:21.887  6978  6978 D AudioStreamTrack: open(), request notificationFrames = -8, frameCount = 0
+07-23 11:21:21.899  6978  6978 I AudioTrack: createTrack_l(16): AUDIO_OUTPUT_FLAG_FAST successful; frameCount 0 -> 4096
+07-23 11:21:21.899  6978  6978 D AAudioStream: setState(s#22) from 0 to 2
+07-23 11:21:21.900  6978  6978 W AudioStreamTrack: open() flags changed from 0x00000104 to 0x00000004
+07-23 11:21:21.901  6978  6978 I AAudio  : AAudioStreamBuilder_openStream() returns 0 = AAUDIO_OK for s#22 ----------------
+07-23 11:21:21.901  6978  6978 D AAudio  : AAudioStream_requestStart(s#22) called --------------
+07-23 11:21:21.901  6978  6978 D AAudioStream: setState(s#22) from 2 to 3
+07-23 11:21:21.903  6978  6978 D unetbd_interco: PlayerBase::start() from IPlayer
+07-23 11:21:21.903  6978  6978 D AAudio  : AAudioStream_requestStart(s#22) returned 0 ---------
+07-23 11:21:21.921  6978 10421 D AudioStreamLegacy: onAudioDeviceUpdate(deviceId = 2)
+07-23 11:21:21.931  6978 11102 D AAudioStream: setState(s#22) from 3 to 4
+07-23 11:21:21.966  6978  6978 I flutter : result unlock is: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-23 11:21:22.046  6978  6978 D SysFileUtils: write success to value=0
+07-23 11:21:22.047  6978  6978 D SysFileUtils: write success to value=1
+07-23 11:21:22.055  6978  6978 I flutter : from io control unlock: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-23 11:21:24.178  6978  6978 D SysFileUtils: write success to value=0
+07-23 11:21:24.451  6978  6978 D SysFileUtils: write success to value=0
+07-23 11:21:24.451  6978  6978 D SysFileUtils: write success to value=1
+07-23 11:21:24.466  6978  6978 I flutter : from io control lock: PluginShellData{value: , error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
+07-23 11:21:28.046  6978  6978 I flutter : total mismatch found: 0

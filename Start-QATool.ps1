@@ -15,9 +15,10 @@
 . "$PSScriptRoot\common\logger.ps1"
 . "$PSScriptRoot\common\utils.ps1"
 . "$PSScriptRoot\common\menu.ps1"
+. "$PSScriptRoot\common\report.ps1"
 
 # ============================================================
-# Load Directory Modules
+# Directory Modules
 # ============================================================
 
 . "$PSScriptRoot\modules\Device\DeviceManager.ps1"
@@ -25,16 +26,12 @@
 . "$PSScriptRoot\modules\Capture\Logcat.ps1"
 . "$PSScriptRoot\modules\Capture\Screenshot.ps1"
 . "$PSScriptRoot\modules\Capture\ScreenRecord.ps1"
-
-
-# ============================================================
-# Report & settings Modules
-# ============================================================
-
-. "$PSScriptRoot\modules\Report\BugReport.ps1"
+. "$PSScriptRoot\modules\Report\Bugreport.ps1"
 . "$PSScriptRoot\modules\Report\Performance.ps1"
 . "$PSScriptRoot\modules\Report\CollectEvidence.ps1"
 . "$PSScriptRoot\modules\Settings\Settings.ps1"
+. "$PSScriptRoot\modules\Report\Livelogviewer.ps1"
+
 
 # ============================================================
 # Main Application
@@ -94,11 +91,17 @@ try {
 
             "4" {
 
-                Take-SQTScreenshot
+                Start-SQTLiveLogViewer
 
             }
 
             "5" {
+
+                Take-SQTScreenshot
+
+            }
+
+            "6" {
 
                 Start-SQTScreenRecording
 
@@ -108,19 +111,19 @@ try {
             # Reports
             # =====================================================
 
-            "6" {
+            "7" {
 
                 Show-SQTPerformanceInfo
 
             }
 
-            "7" {
+            "8" {
 
                 Start-SQTCollectEvidence
 
             }
 
-            "8" {
+            "9" {
 
                 New-SQTBugReport
 
@@ -130,7 +133,7 @@ try {
             # Settings
             # =====================================================
 
-            "9" {
+            "10" {
 
                 Open-SQTSettings
 
