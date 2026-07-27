@@ -1,1 +1,35 @@
 .history
+
+# Reports
+Reports/
+reports/
+
+# Logs
+Logs/
+logs/
+
+# Temporary files
+Temp/
+temp/
+
+# PowerShell
+*.ps1xml
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Log files
+*.log
+
+# Screen recordings
+*.mp4
+
+# Screenshots
+*.png
+
+# ZIP evidence
+*.zip
