@@ -1,37 +1,47 @@
 # ============================================================
 # Sicunet QA Toolkit
 # File    : Start-QATool.ps1
-# Version : 1.0.0
+# Version : 0.1.0
 # Author  : Zakir Hosen
 # ============================================================
 
-# ============================================================
-# Load Common Files
-# ============================================================
+# # ============================================================
+# # Bootstrap
+# # ============================================================
 
+# . "$PSScriptRoot\common\logger.ps1"
+# . "$PSScriptRoot\common\utils.ps1"
+
+# # Load remaining common files
+# Import-SQTModules "$PSScriptRoot\common"
+
+# # Load feature modules
+# Import-SQTModules "$PSScriptRoot\modules"
+# Common
+. "$PSScriptRoot\common\logger.ps1"
+. "$PSScriptRoot\common\utils.ps1"
 . "$PSScriptRoot\common\config.ps1"
 . "$PSScriptRoot\common\devices.ps1"
 . "$PSScriptRoot\common\adb.ps1"
-. "$PSScriptRoot\common\logger.ps1"
-. "$PSScriptRoot\common\utils.ps1"
 . "$PSScriptRoot\common\menu.ps1"
 . "$PSScriptRoot\common\report.ps1"
 
-# ============================================================
-# Directory Modules
-# ============================================================
+# Modules
+. "$PSScriptRoot\modules\Core\Session.ps1"
 
 . "$PSScriptRoot\modules\Device\DeviceManager.ps1"
 . "$PSScriptRoot\modules\Device\DeviceInfo.ps1"
+
 . "$PSScriptRoot\modules\Capture\Logcat.ps1"
+. "$PSScriptRoot\modules\Capture\LiveLogViewer.ps1"
 . "$PSScriptRoot\modules\Capture\Screenshot.ps1"
 . "$PSScriptRoot\modules\Capture\ScreenRecord.ps1"
-. "$PSScriptRoot\modules\Report\Bugreport.ps1"
+
 . "$PSScriptRoot\modules\Report\Performance.ps1"
 . "$PSScriptRoot\modules\Report\CollectEvidence.ps1"
-. "$PSScriptRoot\modules\Settings\Settings.ps1"
-. "$PSScriptRoot\modules\Report\Livelogviewer.ps1"
+. "$PSScriptRoot\modules\Report\BugReport.ps1"
 
+. "$PSScriptRoot\modules\Settings\Settings.ps1"
 
 # ============================================================
 # Main Application
@@ -108,7 +118,7 @@ try {
             }
 
             # =====================================================
-            # Reports
+            # Reports & Monitor
             # =====================================================
 
             "7" {
@@ -129,11 +139,18 @@ try {
 
             }
 
+            "10" {
+
+                Start-SQTSession
+
+            }
+
+
             # =====================================================
             # Settings
             # =====================================================
 
-            "10" {
+            "11" {
 
                 Open-SQTSettings
 

@@ -46,15 +46,14 @@ function Show-MainMenu {
     Write-Host " 7. Performance Info"
     Write-Host " 8. Collect Evidence"
     Write-Host " 9. Bug Report"
+    Write-Host " 10. Start Session"
 
     Write-Host ""
-
     Write-Host "SETTINGS" -ForegroundColor Cyan
     Write-Host "------------------------------------------------------------"
-    Write-Host " 10. Settings"
+    Write-Host " 11. Settings"
 
     Write-Host ""
     Write-Host " 0. Exit"
-
     Write-Host ""
 }
