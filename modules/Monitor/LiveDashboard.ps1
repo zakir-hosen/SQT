@@ -113,6 +113,18 @@ function Show-SQTLiveDashboard {
             $adbVersion = "-"
             $androidVersion = "-"
 
+            # If connected, collect CPU metric (others will be implemented next)
+            if ($isConnected -and $deviceToken) {
+                $devNorm = if ($deviceToken -match ':') { $deviceToken.Split(':')[0] } else { $deviceToken }
+                try {
+                    $cpuVal = Get-SQTCPUUsage -Device $devNorm
+                    if ($null -ne $cpuVal) { $cpu = "${cpuVal}" } else { $cpu = "N/A" }
+                }
+                catch {
+                    $cpu = "N/A"
+                }
+            }
+
             # Render the dashboard without clearing the whole screen to minimize flicker
             [System.Console]::SetCursorPosition(0, 0)
 
@@ -140,7 +152,18 @@ function Show-SQTLiveDashboard {
 
             # Performance
             Write-Host "Performance" -ForegroundColor Green
-            Write-Host "  CPU %       : $cpu"
+            # CPU with colorized value
+            $cpuNum = $null
+            if ([double]::TryParse($cpu, [ref]$cpuNum)) {
+                if ($cpuNum -lt 50) { $cpuColor = 'Green' }
+                elseif ($cpuNum -lt 80) { $cpuColor = 'Yellow' }
+                else { $cpuColor = 'Red' }
+                Write-Host "  CPU %       : " -NoNewline; Write-Host "${cpuNum}%" -ForegroundColor $cpuColor
+            }
+            else {
+                Write-Host "  CPU %       : $cpu"
+            }
+
             Write-Host "  Memory MB    : $memory"
             Write-Host "  Thread Count : $threads"
             Write-Host "  Load Average : $loadAvg"
@@ -263,23 +286,67 @@ function Get-SQTIsDeviceConnected {
 }
 
 # ------------------------------------------------------------
-# Stubs for metric collectors (to be implemented one-by-one)
-# - Get-SQTCPUUsage
-# - Get-SQTMemoryUsage
-# - Get-SQTThreadCount
-# - Get-SQTLoadAverage
-# - Get-SQTBatteryInfo
-# - Get-SQTTemperature
-# - Get-SQTWifiInfo
-# - Get-SQTStorageInfo
-# - Get-SQTLastErrors
-#
-# Each will be implemented in subsequent steps. They should use
-# Invoke-SQTShell / Invoke-SQTADB and follow the project's helper
-# conventions.
+# Implemented metric collectors (step 1: CPU usage)
+# - Get-SQTCPUUsage: reads /proc/stat twice and computes CPU utilization
+#   between samples. Uses Invoke-SQTShell to read remote /proc/stat.
 # ------------------------------------------------------------
 
-function Get-SQTCPUUsage { param([string]$Device) throw "Not implemented" }
+function Get-SQTCPUUsage {
+    param(
+        [Parameter(Mandatory = $true)][string]$Device
+    )
+
+    # Normalize device (strip :port if present)
+    if ($Device -match ':' ) { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        # Helper to read cpu line
+        $readCpu = {
+            param($d)
+            $line = Invoke-SQTShell $d "cat /proc/stat | grep '^cpu '" 2>$null
+            if (-not $line) { return $null }
+            $text = ($line -join "`n") -replace "^cpu\s+", ""
+            $parts = $text -split '\s+' | Where-Object { $_ -ne '' }
+            # fields: user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice
+            [long]$user = 0; [long]$nice = 0; [long]$system = 0; [long]$idle = 0; [long]$iowait = 0; [long]$irq = 0; [long]$softirq = 0; [long]$steal = 0
+            if ($parts.Count -ge 1) { [long]$user = [long]$parts[0] }
+            if ($parts.Count -ge 2) { [long]$nice = [long]$parts[1] }
+            if ($parts.Count -ge 3) { [long]$system = [long]$parts[2] }
+            if ($parts.Count -ge 4) { [long]$idle = [long]$parts[3] }
+            if ($parts.Count -ge 5) { [long]$iowait = [long]$parts[4] }
+            if ($parts.Count -ge 6) { [long]$irq = [long]$parts[5] }
+            if ($parts.Count -ge 7) { [long]$softirq = [long]$parts[6] }
+            if ($parts.Count -ge 8) { [long]$steal = [long]$parts[7] }
+
+            $idleAll = $idle + $iowait
+            $nonIdle = $user + $nice + $system + $irq + $softirq + $steal
+            $total = $idleAll + $nonIdle
+
+            return [PSCustomObject]@{ Total = $total; Idle = $idleAll }
+        }
+
+        $s1 = & $readCpu $dev
+        if (-not $s1) { return $null }
+
+        Start-Sleep -Milliseconds 300
+
+        $s2 = & $readCpu $dev
+        if (-not $s2) { return $null }
+
+        $deltaTotal = $s2.Total - $s1.Total
+        $deltaIdle = $s2.Idle - $s1.Idle
+
+        if ($deltaTotal -le 0) { return 0 }
+
+        $usage = (1 - ($deltaIdle / $deltaTotal)) * 100
+        return [math]::Round($usage, 1)
+    }
+    catch {
+        return $null
+    }
+}
+
+# Keep stubs for other metrics to implement later
 function Get-SQTMemoryUsage { param([string]$Device) throw "Not implemented" }
 function Get-SQTThreadCount { param([string]$Device) throw "Not implemented" }
 function Get-SQTLoadAverage { param([string]$Device) throw "Not implemented" }
