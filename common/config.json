@@ -1,12 +1,12 @@
 {
     "ToolName":  "Sicunet QA Toolkit",
-    "Version": "0.1.0",
+    "Version":  "0.1.0",
     "ADBPath":  "C:\\Users\\Zakir\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
     "Package":  "bd.sicunet.sicunetbd_intercom",
     "ReportDir":  "reports\\Directory",
     "CurrentDevice":  "192.168.1.28",
     "CurrentDeviceName":  "192.168.1.28",
-    "ReportsFolder": "Reports",
-    "LogsFolder": "Logs",
-    "TempFolder": "Temp"
+    "ReportsFolder":  "Reports",
+    "LogsFolder":  "Logs",
+    "TempFolder":  "Temp"
 }

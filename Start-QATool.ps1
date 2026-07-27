@@ -33,10 +33,10 @@
 . "$PSScriptRoot\modules\Device\DeviceInfo.ps1"
 
 . "$PSScriptRoot\modules\Capture\Logcat.ps1"
-. "$PSScriptRoot\modules\Capture\LiveLogViewer.ps1"
 . "$PSScriptRoot\modules\Capture\Screenshot.ps1"
 . "$PSScriptRoot\modules\Capture\ScreenRecord.ps1"
 
+. "$PSScriptRoot\modules\Report\LiveLogViewer.ps1"
 . "$PSScriptRoot\modules\Report\Performance.ps1"
 . "$PSScriptRoot\modules\Report\CollectEvidence.ps1"
 . "$PSScriptRoot\modules\Report\BugReport.ps1"
