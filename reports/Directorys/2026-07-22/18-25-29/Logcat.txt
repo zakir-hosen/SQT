@@ -1,2 +1,0 @@
---------- beginning of main
-07-22 18:25:34.254 14070 14070 I Thread-8: type=1400 audit(0.0:7992): avc: denied { getattr } for path="/dev/ttyS4" dev="tmpfs" ino=163 scontext=u:r:untrusted_app:s0:c119,c256,c512,c768 tcontext=u:object_r:serial_device:s0 tclass=chr_file permissive=1

@@ -1,3 +1,0 @@
---------- beginning of main
-07-23 06:57:45.729  1604  1604 I flutter : default result is: PluginShellData{value: DEBUG: 1784804265:../common/TcpSocket.cpp:137:Connect(): connect fail
-07-23 06:57:45.729  1604  1604 I flutter : Failed to Connect Socket, error: WARNING: linker: Warning: "/data/libs/libc++_shared.so" unused DT entry: unknown processor-specific (type 0x70000001 arg 0x0) (ignoring)}
