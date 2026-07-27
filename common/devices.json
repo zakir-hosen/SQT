@@ -1,31 +1,14 @@
 [
     {
-        "value":  [
-                      {
-                          "value":  [
-                                        {
-                                            "value":  [
-                                                          "@{value=System.Object[]; Count=0}",
-                                                          "@{Name=Office 10-inch-1; IP=192.168.1.5.}"
-                                                      ],
-                                            "Count":  2
-                                        },
-                                        {
-                                            "Name":  "",
-                                            "IP":  ""
-                                        }
-                                    ],
-                          "Count":  2
-                      },
-                      {
-                          "Name":  "10 inch",
-                          "IP":  "192.168"
-                      }
-                  ],
-        "Count":  2
+        "Name":  "192.168.1.5",
+        "IP":  "192.168.1.5"
     },
     {
-        "Name":  "test",
-        "IP":  "10253032"
+        "Name":  "test 2",
+        "IP":  "192.168.1.20"
+    },
+    {
+        "Name":  "Ocin Directory",
+        "IP":  "192.168.1.28"
     }
 ]
