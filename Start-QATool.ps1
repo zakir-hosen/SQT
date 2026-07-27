@@ -32,14 +32,29 @@
 . "$PSScriptRoot\modules\Device\DeviceManager.ps1"
 . "$PSScriptRoot\modules\Device\DeviceInfo.ps1"
 
-. "$PSScriptRoot\modules\Capture\Logcat.ps1"
+$logcatScript = Join-Path $PSScriptRoot "modules\Capture\Logcat.ps1"
+. $logcatScript
+
+if (-not (Get-Command Start-SQTLogcat -ErrorAction SilentlyContinue)) {
+    throw "Unable to load logcat cmdlet from $logcatScript"
+}
+
+. "$PSScriptRoot\modules\Report\Livelogviewer.ps1"
 . "$PSScriptRoot\modules\Capture\Screenshot.ps1"
 . "$PSScriptRoot\modules\Capture\ScreenRecord.ps1"
 
-. "$PSScriptRoot\modules\Report\LiveLogViewer.ps1"
+# Monitor modules
+$liveDashboardScript = Join-Path $PSScriptRoot "modules\Monitor\LiveDashboard.ps1"
+if (Test-Path $liveDashboardScript) {
+    . $liveDashboardScript
+}
+else {
+    Write-Host "Monitor module not found: $liveDashboardScript" -ForegroundColor Yellow
+}
+
 . "$PSScriptRoot\modules\Report\Performance.ps1"
 . "$PSScriptRoot\modules\Report\CollectEvidence.ps1"
-. "$PSScriptRoot\modules\Report\BugReport.ps1"
+. "$PSScriptRoot\modules\Report\Bugreport.ps1"
 
 . "$PSScriptRoot\modules\Settings\Settings.ps1"
 
@@ -145,6 +160,17 @@ try {
 
             }
 
+            "12" {
+
+                if (Get-Command Show-SQTLiveDashboard -ErrorAction SilentlyContinue) {
+                    Show-SQTLiveDashboard -IntervalSeconds 1
+                }
+                else {
+                    Write-SQTLog "Live Dashboard module not loaded." "ERROR"
+                    Pause-SQT
+                }
+
+            }
 
             # =====================================================
             # Settings

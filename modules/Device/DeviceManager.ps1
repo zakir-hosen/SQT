@@ -263,10 +263,105 @@ function Connect-NewSQTDevice {
     Write-Host "==========================================" -ForegroundColor Cyan
     Write-Host ""
 
-    $ip = (Read-Host "Enter Device IP").Trim()
+    $config = $null
+    try { $config = Get-SQTConfig } catch { $config = $null }
 
-    if ([string]::IsNullOrWhiteSpace($ip)) {
-        Write-SQTLog "No IP entered." "ERROR"
+    $lastDevice = $null
+    if ($config -and -not [string]::IsNullOrWhiteSpace($config.CurrentDevice)) {
+        $lastDevice = $config.CurrentDevice
+    }
+
+    # Present options to the user
+    Write-Host "Choose connection option:" -ForegroundColor Cyan
+    $optIndex = 1
+    $options = @{}
+
+    if ($lastDevice) {
+        Write-Host " $optIndex. Use last device ($lastDevice)"
+        $options[$optIndex] = @{ Type = 'last'; Value = $lastDevice }
+        $optIndex++
+    }
+
+    $savedDevices = Get-SQTDeviceList
+    if ($savedDevices.Count -gt 0) {
+        Write-Host " $optIndex. Choose from saved devices"
+        $options[$optIndex] = @{ Type = 'saved' }
+        $optIndex++
+    }
+
+    Write-Host " $optIndex. Enter IP manually"
+    $options[$optIndex] = @{ Type = 'manual' }
+
+    $selection = Read-Host "Select option number"
+    $parsedSel = 0
+    if (-not [int]::TryParse($selection, [ref]$parsedSel)) {
+        Write-SQTLog "Invalid selection." "ERROR"
+        return
+    }
+
+    if (-not $options.ContainsKey($parsedSel)) {
+        Write-SQTLog "Invalid selection." "ERROR"
+        return
+    }
+
+    $chosen = $options[$parsedSel]
+    $ip = $null
+    $name = $null
+
+    if ($chosen.Type -eq 'last') {
+        $ip = $chosen.Value
+        $name = $ip
+    }
+    elseif ($chosen.Type -eq 'saved') {
+        # Show saved devices and allow selection
+        $devices = Get-SQTDeviceList
+        if ($devices.Count -eq 0) {
+            Write-SQTLog "No saved devices available." "ERROR"
+            return
+        }
+
+        Clear-Host
+        Write-Host "Saved Devices" -ForegroundColor Cyan
+        $i = 1
+        foreach ($d in $devices) {
+            $label = if ($d.Name) { $d.Name } else { 'Unnamed' }
+            Write-Host " $i. $label - $($d.IP)"
+            $i++
+        }
+
+        $sel = Read-Host "Select device number"
+        $psel = 0
+        if (-not [int]::TryParse($sel, [ref]$psel)) {
+            Write-SQTLog "Invalid selection." "ERROR"
+            return
+        }
+        $idx = $psel - 1
+        if ($idx -lt 0 -or $idx -ge $devices.Count) {
+            Write-SQTLog "Invalid selection." "ERROR"
+            return
+        }
+
+        $ip = $devices[$idx].IP
+        $name = $devices[$idx].Name
+    }
+    else {
+        # manual
+        $ipInput = (Read-Host "Enter Device IP").Trim()
+        if ([string]::IsNullOrWhiteSpace($ipInput)) {
+            Write-SQTLog "No IP entered." "ERROR"
+            return
+        }
+        $ip = $ipInput
+
+        $saveChoice = Read-Host "Save this device to saved list? (Y/N)"
+        if ($saveChoice -match '^[Yy]') {
+            $nameInput = (Read-Host "Enter device name (optional)").Trim()
+            $name = if (-not [string]::IsNullOrWhiteSpace($nameInput)) { $nameInput } else { $ip }
+        }
+    }
+
+    if (-not $ip) {
+        Write-SQTLog "No device selected." "ERROR"
         return
     }
 
@@ -281,18 +376,24 @@ function Connect-NewSQTDevice {
         Write-Host $result
 
         if ($result -match "connected" -or $result -match "already connected" -or $result -match "already exists") {
-            $devices = Get-SQTDeviceList
-            $existing = $devices | Where-Object { $_.IP -eq $ip }
 
-            if (-not $existing) {
-                $devices += [PSCustomObject]@{
-                    Name = $ip
-                    IP   = $ip
+            # Save to devices if requested or missing
+            if ($name) {
+                $devices = Get-SQTDeviceList
+                $existing = $devices | Where-Object { $_.IP -eq $ip }
+
+                if (-not $existing) {
+                    $devices += [PSCustomObject]@{
+                        Name = $name
+                        IP   = $ip
+                    }
+                    Save-SQTDevices -Devices $devices
                 }
-                Save-SQTDevices -Devices $devices
             }
 
-            Set-SQTCurrentDevice -Name $ip -IP $ip
+            # Set current device
+            if (-not [string]::IsNullOrWhiteSpace($name)) { $displayName = $name } else { $displayName = $ip }
+            Set-SQTCurrentDevice -Name $displayName -IP $ip
             Write-SQTLog "Connected successfully." "SUCCESS"
         }
         else {

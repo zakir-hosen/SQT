@@ -47,6 +47,7 @@ function Show-MainMenu {
     Write-Host " 8. Collect Evidence"
     Write-Host " 9. Bug Report"
     Write-Host " 10. Start Session"
+    Write-Host " 12. Live Dashboard"
 
     Write-Host ""
     Write-Host "SETTINGS" -ForegroundColor Cyan
