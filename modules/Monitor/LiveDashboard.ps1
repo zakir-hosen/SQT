@@ -88,8 +88,47 @@ function Show-SQTLiveDashboard {
             # Prepare display values (placeholders until metrics implemented)
             $deviceStatus = if ($isConnected) { "Connected ($deviceToken)" } else { "Not Connected" }
 
-            $appStatus = "Loading..."
+            $devNorm = $null
+            if ($deviceToken) {
+                $devNorm = if ($deviceToken -match ':') { $deviceToken.Split(':')[0] } else { $deviceToken }
+            }
+
+            $appStatus = "Not configured"
             $appPid = "-"
+            $package = $null
+
+            if ($config -and -not [string]::IsNullOrWhiteSpace($config.Package)) {
+                $package = $config.Package
+            }
+            elseif ($config -and -not [string]::IsNullOrWhiteSpace($config.PackageName)) {
+                $package = $config.PackageName
+            }
+            elseif ($global:SQTSession -and -not [string]::IsNullOrWhiteSpace($global:SQTSession.Package)) {
+                $package = $global:SQTSession.Package
+            }
+
+            if ($package -and $devNorm) {
+                try {
+                    # Resolve the package PID only when we have a valid device token.
+                    $processId = Get-SQTAppProcessId -Device $devNorm -Package $package
+                    if ([string]::IsNullOrWhiteSpace($processId)) {
+                        $appStatus = "Not running"
+                        $appPid = "-"
+                    }
+                    else {
+                        $appStatus = "Running"
+                        $appPid = $processId
+                    }
+                }
+                catch {
+                    $appStatus = "Unavailable"
+                    $appPid = "-"
+                }
+            }
+            elseif ($package) {
+                $appStatus = "Device unavailable"
+                $appPid = "-"
+            }
 
             $cpu = "Loading..."
             $memory = "Loading..."
@@ -113,23 +152,31 @@ function Show-SQTLiveDashboard {
             $adbVersion = "-"
             $androidVersion = "-"
 
-            # If connected, collect CPU and Memory metrics (others will be implemented next)
+            # If connected, collect batched metrics (CPU, Memory, Load) using a single adb shell call
             if ($isConnected -and $deviceToken) {
                 $devNorm = if ($deviceToken -match ':') { $deviceToken.Split(':')[0] } else { $deviceToken }
                 try {
-                    $cpuVal = Get-SQTCPUUsage -Device $devNorm
-                    if ($null -ne $cpuVal) { $cpu = "${cpuVal}" } else { $cpu = "N/A" }
+                    $metrics = Get-SQTDeviceMetrics -Device $devNorm
+                    if ($metrics) {
+                        $cpuVal = $metrics.CPU
+                        if (-not [string]::IsNullOrWhiteSpace([string]$cpuVal)) { $cpu = [string]$cpuVal } else { $cpu = "N/A" }
+
+                        $memVal = $metrics.MemoryMB
+                        if (-not [string]::IsNullOrWhiteSpace([string]$memVal)) { $memory = [string]$memVal } else { $memory = "N/A" }
+
+                        $loadVal = $metrics.LoadAvg
+                        if (-not [string]::IsNullOrWhiteSpace([string]$loadVal)) { $loadAvg = [string]$loadVal } else { $loadAvg = "-" }
+                    }
+                    else {
+                        $cpu = "N/A"
+                        $memory = "N/A"
+                        $loadAvg = "-"
+                    }
                 }
                 catch {
                     $cpu = "N/A"
-                }
-
-                try {
-                    $memVal = Get-SQTMemoryUsage -Device $devNorm
-                    if ($null -ne $memVal) { $memory = "${memVal}" } else { $memory = "N/A" }
-                }
-                catch {
                     $memory = "N/A"
+                    $loadAvg = "-"
                 }
             }
 
@@ -332,47 +379,68 @@ function Get-SQTCPUUsage {
         [Parameter(Mandatory = $true)][string]$Device
     )
 
-    # Normalize device (strip :port if present)
-    if ($Device -match ':' ) { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
 
     try {
-        # Helper to read cpu line
-        $readCpu = {
+        $sampleCpu = {
             param($d)
-            $line = Invoke-SQTShell $d "cat /proc/stat | grep '^cpu '" 2>$null
-            if (-not $line) { return $null }
-            $text = ($line -join "`n") -replace "^cpu\s+", ""
-            $parts = $text -split '\s+' | Where-Object { $_ -ne '' }
-            # fields: user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice
-            [long]$user = 0; [long]$nice = 0; [long]$system = 0; [long]$idle = 0; [long]$iowait = 0; [long]$irq = 0; [long]$softirq = 0; [long]$steal = 0
-            if ($parts.Count -ge 1) { [long]$user = [long]$parts[0] }
-            if ($parts.Count -ge 2) { [long]$nice = [long]$parts[1] }
-            if ($parts.Count -ge 3) { [long]$system = [long]$parts[2] }
-            if ($parts.Count -ge 4) { [long]$idle = [long]$parts[3] }
-            if ($parts.Count -ge 5) { [long]$iowait = [long]$parts[4] }
-            if ($parts.Count -ge 6) { [long]$irq = [long]$parts[5] }
-            if ($parts.Count -ge 7) { [long]$softirq = [long]$parts[6] }
-            if ($parts.Count -ge 8) { [long]$steal = [long]$parts[7] }
 
-            $idleAll = $idle + $iowait
-            $nonIdle = $user + $nice + $system + $irq + $softirq + $steal
-            $total = $idleAll + $nonIdle
+            $lines = @(Invoke-SQTShell $d "cat /proc/stat" 2>$null)
+            if (-not $lines -or $lines.Count -eq 0) { return $null }
 
-            return [PSCustomObject]@{ Total = $total; Idle = $idleAll }
+            foreach ($line in $lines) {
+                if ($line -match '^cpu\s+(.+)$') {
+                    $parts = $matches[1] -split '\s+' | Where-Object { $_ -ne '' }
+                    if ($parts.Count -ge 4) {
+                        $user = [long]$parts[0]
+                        $nice = if ($parts.Count -ge 2) { [long]$parts[1] } else { 0 }
+                        $system = if ($parts.Count -ge 3) { [long]$parts[2] } else { 0 }
+                        $idle = [long]$parts[3]
+                        $iowait = if ($parts.Count -ge 5) { [long]$parts[4] } else { 0 }
+                        $irq = if ($parts.Count -ge 6) { [long]$parts[5] } else { 0 }
+                        $softirq = if ($parts.Count -ge 7) { [long]$parts[6] } else { 0 }
+                        $steal = if ($parts.Count -ge 8) { [long]$parts[7] } else { 0 }
+
+                        $idleAll = $idle + $iowait
+                        $nonIdle = $user + $nice + $system + $irq + $softirq + $steal
+                        $total = $idleAll + $nonIdle
+
+                        return [PSCustomObject]@{ Total = $total; Idle = $idleAll }
+                    }
+                }
+            }
+
+            return $null
         }
 
-        $s1 = & $readCpu $dev
+        $s1 = & $sampleCpu $dev
         if (-not $s1) { return $null }
 
-        Start-Sleep -Milliseconds 300
+        Start-Sleep -Milliseconds 800
 
-        $s2 = & $readCpu $dev
+        $s2 = & $sampleCpu $dev
         if (-not $s2) { return $null }
 
         $deltaTotal = $s2.Total - $s1.Total
         $deltaIdle = $s2.Idle - $s1.Idle
 
-        if ($deltaTotal -le 0) { return 0 }
+        if ($deltaTotal -le 0) {
+            try {
+                $topLines = @(Invoke-SQTShell $dev "top -n 1" 2>$null)
+                foreach ($line in $topLines) {
+                    if ($line -match 'User\s+(\d+)%.*System\s+(\d+)%') {
+                        $userPct = [int]$matches[1]
+                        $systemPct = [int]$matches[2]
+                        return [math]::Round(($userPct + $systemPct), 1)
+                    }
+                }
+            }
+            catch {
+                return $null
+            }
+
+            return 0
+        }
 
         $usage = (1 - ($deltaIdle / $deltaTotal)) * 100
         return [math]::Round($usage, 1)
@@ -388,28 +456,69 @@ function Get-SQTMemoryUsage {
         [Parameter(Mandatory = $true)][string]$Device
     )
 
-    # Normalize device token
     if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
 
     try {
-        # Read MemTotal and MemAvailable
-        $lines = Invoke-SQTShell $dev "cat /proc/meminfo | grep -E 'MemTotal|MemAvailable'" 2>$null
-        if (-not $lines) { return $null }
+        $lines = @(Invoke-SQTShell $dev "cat /proc/meminfo" 2>$null)
+        if (-not $lines -or $lines.Count -eq 0) { return $null }
 
         $totalKb = 0
         $availKb = 0
+        $freeKb = 0
 
         foreach ($l in $lines) {
-            if ($l -match 'MemTotal:\s*(\d+)') { $totalKb = [int]$matches[1] }
-            if ($l -match 'MemAvailable:\s*(\d+)') { $availKb = [int]$matches[1] }
+            $line = [string]$l
+            if ($line -match 'MemTotal:\s*(\d+)') { $totalKb = [int]$matches[1] }
+            elseif ($line -match 'MemAvailable:\s*(\d+)') { $availKb = [int]$matches[1] }
+            elseif ($line -match 'MemFree:\s*(\d+)') { $freeKb = [int]$matches[1] }
         }
 
+        if ($availKb -le 0 -and $freeKb -gt 0) { $availKb = $freeKb }
         if ($totalKb -le 0) { return $null }
 
         $usedKb = $totalKb - $availKb
         $usedMb = [math]::Round(($usedKb / 1024), 1)
 
         return $usedMb
+    }
+    catch {
+        return $null
+    }
+}
+
+# ------------------------------------------------------------
+# Get-SQTDeviceMetrics
+# - Reads CPU, memory and load from the connected device.
+# - Returns PSCustomObject: CPU (percent), MemoryMB (used), LoadAvg (1m)
+# ------------------------------------------------------------
+function Get-SQTDeviceMetrics {
+    param(
+        [Parameter(Mandatory = $true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $cpuUsage = Get-SQTCPUUsage -Device $dev
+        $usedMb = Get-SQTMemoryUsage -Device $dev
+
+        $loadAvg = $null
+        try {
+            $loadLines = @(Invoke-SQTShell $dev "cat /proc/loadavg" 2>$null)
+            if ($loadLines -and $loadLines.Count -gt 0) {
+                $fields = ($loadLines[0] -split '\s+' | Where-Object { $_ -ne '' })
+                if ($fields.Count -ge 1) { $loadAvg = $fields[0] }
+            }
+        }
+        catch {
+            $loadAvg = $null
+        }
+
+        return [PSCustomObject]@{
+            CPU      = $cpuUsage
+            MemoryMB = $usedMb
+            LoadAvg  = $loadAvg
+        }
     }
     catch {
         return $null

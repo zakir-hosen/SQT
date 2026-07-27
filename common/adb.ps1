@@ -4,6 +4,14 @@
 # Version: 1.0.0
 # ============================================================
 
+# Ensure configuration helpers are available when this file is dot-sourced
+if (-not (Get-Command Get-SQTConfig -ErrorAction SilentlyContinue)) {
+    $configScript = Join-Path $PSScriptRoot "config.ps1"
+    if (Test-Path $configScript) {
+        . $configScript
+    }
+}
+
 # ------------------------------------------------------------
 # Get ADB executable
 # ------------------------------------------------------------
