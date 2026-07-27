@@ -113,7 +113,7 @@ function Show-SQTLiveDashboard {
             $adbVersion = "-"
             $androidVersion = "-"
 
-            # If connected, collect CPU metric (others will be implemented next)
+            # If connected, collect CPU and Memory metrics (others will be implemented next)
             if ($isConnected -and $deviceToken) {
                 $devNorm = if ($deviceToken -match ':') { $deviceToken.Split(':')[0] } else { $deviceToken }
                 try {
@@ -123,10 +123,38 @@ function Show-SQTLiveDashboard {
                 catch {
                     $cpu = "N/A"
                 }
+
+                try {
+                    $memVal = Get-SQTMemoryUsage -Device $devNorm
+                    if ($null -ne $memVal) { $memory = "${memVal}" } else { $memory = "N/A" }
+                }
+                catch {
+                    $memory = "N/A"
+                }
             }
 
             # Render the dashboard without clearing the whole screen to minimize flicker
-            [System.Console]::SetCursorPosition(0, 0)
+            try {
+                if (-not $Script:LiveDashboardLastHeight) { $Script:LiveDashboardLastHeight = 0 }
+
+                # Clear the previously rendered region (if any) to avoid leftover characters
+                for ($i = 0; $i -lt $Script:LiveDashboardLastHeight; $i++) {
+                    try {
+                        [System.Console]::SetCursorPosition(0, $i)
+                        $pad = ' ' * [System.Console]::WindowWidth
+                        Write-Host $pad -NoNewline
+                    }
+                    catch {
+                        # ignore errors if the console size changed
+                    }
+                }
+
+                [System.Console]::SetCursorPosition(0, 0)
+            }
+            catch {
+                # If console operations fail, fallback to full clear
+                Clear-Host
+            }
 
             # Top header (overwrite previous content)
             Write-Host "==========================================================" -ForegroundColor Cyan
@@ -199,6 +227,14 @@ function Show-SQTLiveDashboard {
             Write-Host ""
 
             Write-Host "(Press Q to quit)" -ForegroundColor DarkGray
+
+            # Capture final cursor position to know how many lines were rendered
+            try {
+                $Script:LiveDashboardLastHeight = [System.Console]::CursorTop
+            }
+            catch {
+                # ignore
+            }
 
             # Wait for interval while still allowing key polling
             $sleepStep = 100
@@ -346,8 +382,40 @@ function Get-SQTCPUUsage {
     }
 }
 
-# Keep stubs for other metrics to implement later
-function Get-SQTMemoryUsage { param([string]$Device) throw "Not implemented" }
+# Implement Get-SQTMemoryUsage - reads /proc/meminfo and returns used memory in MB
+function Get-SQTMemoryUsage {
+    param(
+        [Parameter(Mandatory = $true)][string]$Device
+    )
+
+    # Normalize device token
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        # Read MemTotal and MemAvailable
+        $lines = Invoke-SQTShell $dev "cat /proc/meminfo | grep -E 'MemTotal|MemAvailable'" 2>$null
+        if (-not $lines) { return $null }
+
+        $totalKb = 0
+        $availKb = 0
+
+        foreach ($l in $lines) {
+            if ($l -match 'MemTotal:\s*(\d+)') { $totalKb = [int]$matches[1] }
+            if ($l -match 'MemAvailable:\s*(\d+)') { $availKb = [int]$matches[1] }
+        }
+
+        if ($totalKb -le 0) { return $null }
+
+        $usedKb = $totalKb - $availKb
+        $usedMb = [math]::Round(($usedKb / 1024), 1)
+
+        return $usedMb
+    }
+    catch {
+        return $null
+    }
+}
+
 function Get-SQTThreadCount { param([string]$Device) throw "Not implemented" }
 function Get-SQTLoadAverage { param([string]$Device) throw "Not implemented" }
 function Get-SQTBatteryInfo { param([string]$Device) throw "Not implemented" }
