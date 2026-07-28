@@ -152,7 +152,7 @@ function Show-SQTLiveDashboard {
             $adbVersion = "-"
             $androidVersion = "-"
 
-            # If connected, collect batched metrics (CPU, Memory, Load) using a single adb shell call
+            # If connected, collect batched metrics (CPU, Memory, Load) and other device data
             if ($isConnected -and $deviceToken) {
                 $devNorm = if ($deviceToken -match ':') { $deviceToken.Split(':')[0] } else { $deviceToken }
                 try {
@@ -178,6 +178,89 @@ function Show-SQTLiveDashboard {
                     $memory = "N/A"
                     $loadAvg = "-"
                 }
+
+                try {
+                    $threads = Get-SQTThreadCount -Device $devNorm
+                    if (-not [string]::IsNullOrWhiteSpace([string]$threads)) { $threads = [string]$threads } else { $threads = "-" }
+                }
+                catch {
+                    $threads = "-"
+                }
+
+                try {
+                    $battery = Get-SQTBatteryInfo -Device $devNorm
+                }
+                catch {
+                    $battery = "-"
+                }
+
+                try {
+                    $temp = Get-SQTTemperature -Device $devNorm
+                }
+                catch {
+                    $temp = "-"
+                }
+
+                try {
+                    $storage = Get-SQTStorageInfo -Device $devNorm
+                }
+                catch {
+                    $storage = "-"
+                }
+
+                try {
+                    $wifi = Get-SQTWifiInfo -Device $devNorm
+                }
+                catch {
+                    $wifi = "-"
+                }
+
+                try {
+                    $ip = Get-SQTDeviceIP -Device $devNorm
+                }
+                catch {
+                    $ip = "-"
+                }
+
+                try {
+                    $internet = Get-SQTInternetStatus -Device $devNorm
+                }
+                catch {
+                    $internet = "-"
+                }
+
+                try {
+                    $androidVersion = Get-SQTAndroidVersion -Device $devNorm
+                    if (-not [string]::IsNullOrWhiteSpace($androidVersion)) { $androidVersion = $androidVersion.Trim() }
+                }
+                catch {
+                    $androidVersion = "-"
+                }
+
+                try {
+                    $logs = Get-SQTLastErrors -Device $devNorm -Lines 50
+                    if ($logs) {
+                        $errorCount = $logs.ErrorCount
+                        $warningCount = $logs.WarningCount
+                        $lastError = $logs.LastError
+                    }
+                }
+                catch {
+                    $errorCount = "-"
+                    $warningCount = "-"
+                    $lastError = "-"
+                }
+            }
+
+            try {
+                $adbVersionOutput = @(Invoke-SQTADB @("version"))
+                $adbVersionText = ($adbVersionOutput -join ' ').Trim()
+                if (-not [string]::IsNullOrWhiteSpace($adbVersionText)) {
+                    $adbVersion = $adbVersionText
+                }
+            }
+            catch {
+                $adbVersion = "-"
             }
 
             # Render the dashboard without clearing the whole screen to minimize flicker
@@ -196,7 +279,7 @@ function Show-SQTLiveDashboard {
                     }
                 }
 
-                [System.Console]::SetCursorPosition(0, 0)
+                [System.Console]::SetCursorPosition(0,0)
             }
             catch {
                 # If console operations fail, fallback to full clear
@@ -376,7 +459,7 @@ function Get-SQTIsDeviceConnected {
 
 function Get-SQTCPUUsage {
     param(
-        [Parameter(Mandatory = $true)][string]$Device
+        [Parameter(Mandatory=$true)][string]$Device
     )
 
     if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
@@ -443,7 +526,7 @@ function Get-SQTCPUUsage {
         }
 
         $usage = (1 - ($deltaIdle / $deltaTotal)) * 100
-        return [math]::Round($usage, 1)
+        return [math]::Round($usage,1)
     }
     catch {
         return $null
@@ -453,7 +536,7 @@ function Get-SQTCPUUsage {
 # Implement Get-SQTMemoryUsage - reads /proc/meminfo and returns used memory in MB
 function Get-SQTMemoryUsage {
     param(
-        [Parameter(Mandatory = $true)][string]$Device
+        [Parameter(Mandatory=$true)][string]$Device
     )
 
     if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
@@ -477,7 +560,7 @@ function Get-SQTMemoryUsage {
         if ($totalKb -le 0) { return $null }
 
         $usedKb = $totalKb - $availKb
-        $usedMb = [math]::Round(($usedKb / 1024), 1)
+        $usedMb = [math]::Round(($usedKb / 1024),1)
 
         return $usedMb
     }
@@ -493,7 +576,7 @@ function Get-SQTMemoryUsage {
 # ------------------------------------------------------------
 function Get-SQTDeviceMetrics {
     param(
-        [Parameter(Mandatory = $true)][string]$Device
+        [Parameter(Mandatory=$true)][string]$Device
     )
 
     if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
@@ -515,9 +598,9 @@ function Get-SQTDeviceMetrics {
         }
 
         return [PSCustomObject]@{
-            CPU      = $cpuUsage
+            CPU = $cpuUsage
             MemoryMB = $usedMb
-            LoadAvg  = $loadAvg
+            LoadAvg = $loadAvg
         }
     }
     catch {
@@ -525,12 +608,265 @@ function Get-SQTDeviceMetrics {
     }
 }
 
-function Get-SQTThreadCount { param([string]$Device) throw "Not implemented" }
-function Get-SQTLoadAverage { param([string]$Device) throw "Not implemented" }
-function Get-SQTBatteryInfo { param([string]$Device) throw "Not implemented" }
-function Get-SQTTemperature { param([string]$Device) throw "Not implemented" }
-function Get-SQTWifiInfo { param([string]$Device) throw "Not implemented" }
-function Get-SQTStorageInfo { param([string]$Device) throw "Not implemented" }
-function Get-SQTLastErrors { param([string]$Device, [int]$Lines = 50) throw "Not implemented" }
+function Get-SQTThreadCount {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $topLines = @(Invoke-SQTShell $dev "top -n 1 2>/dev/null")
+        foreach ($line in $topLines) {
+            if ($line -match 'Threads?[:\s]+(\d+)') {
+                return [int]$matches[1]
+            }
+        }
+
+        $psLines = @(Invoke-SQTShell $dev "ps 2>/dev/null")
+        if ($psLines.Count -gt 1) {
+            return ($psLines.Count - 1)
+        }
+    }
+    catch {
+        return $null
+    }
+
+    return $null
+}
+
+function Get-SQTLoadAverage {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $loadLines = @(Invoke-SQTShell $dev "cat /proc/loadavg 2>/dev/null")
+        if ($loadLines.Count -gt 0) {
+            $fields = ($loadLines[0] -split '\s+' | Where-Object { $_ -ne '' })
+            if ($fields.Count -ge 1) {
+                return $fields[0]
+            }
+        }
+    }
+    catch {
+        return $null
+    }
+
+    return $null
+}
+
+function Get-SQTBatteryInfo {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $batteryLines = @(Invoke-SQTShell $dev "dumpsys battery 2>/dev/null")
+        $level = $null
+        foreach ($line in $batteryLines) {
+            if ($line -match 'level:\s*(\d+)') {
+                $level = [int]$matches[1]
+                break
+            }
+        }
+
+        if ($level -ne $null) {
+            return "$level%"
+        }
+    }
+    catch {
+        return $null
+    }
+
+    return $null
+}
+
+function Get-SQTTemperature {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $batteryLines = @(Invoke-SQTShell $dev "dumpsys battery 2>/dev/null")
+        foreach ($line in $batteryLines) {
+            if ($line -match 'temperature:\s*(\d+)') {
+                $value = [int]$matches[1]
+                if ($value -gt 100) {
+                    $value = [math]::Round($value / 10, 1)
+                }
+                return "$value°C"
+            }
+        }
+    }
+    catch {
+        return $null
+    }
+
+    return $null
+}
+
+function Get-SQTStorageInfo {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $dfLines = @(Invoke-SQTShell $dev "df /data 2>/dev/null || df 2>/dev/null")
+        foreach ($line in $dfLines) {
+            if ($line -match '(\d+)%\s+.*(?:/data|/storage|/mnt|/sdcard|/system|/cache)') {
+                return "$($matches[1])%"
+            }
+            elseif ($line -match '(\d+)%') {
+                return "$($matches[1])%"
+            }
+        }
+    }
+    catch {
+        return $null
+    }
+
+    return $null
+}
+
+function Get-SQTWifiInfo {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $wifiLines = @(Invoke-SQTShell $dev "dumpsys wifi 2>/dev/null")
+        foreach ($line in $wifiLines) {
+            if ($line -match 'RSSI[:=]\s*(-?\d+)') {
+                return "${matches[1]} dBm"
+            }
+            if ($line -match 'mRssi\s*[:=]\s*(-?\d+)') {
+                return "${matches[1]} dBm"
+            }
+            if ($line -match 'rssi\s*[:=]\s*(-?\d+)') {
+                return "${matches[1]} dBm"
+            }
+        }
+    }
+    catch {
+        return $null
+    }
+
+    return $null
+}
+
+function Get-SQTDeviceIP {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $propIp = @(Invoke-SQTShell $dev "getprop dhcp.wlan0.ipaddress 2>/dev/null") | Select-Object -First 1
+        if (-not [string]::IsNullOrWhiteSpace($propIp) -and $propIp -ne '0.0.0.0') {
+            return $propIp.Trim()
+        }
+
+        $ipLines = @(Invoke-SQTShell $dev "ip -f inet addr show wlan0 2>/dev/null | grep 'inet ' 2>/dev/null")
+        foreach ($line in $ipLines) {
+            if ($line -match 'inet\s+([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)') {
+                return $matches[1]
+            }
+        }
+
+        $ifconfigLines = @(Invoke-SQTShell $dev "ifconfig wlan0 2>/dev/null")
+        foreach ($line in $ifconfigLines) {
+            if ($line -match 'inet\s+addr:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)') {
+                return $matches[1]
+            }
+            if ($line -match 'inet\s+([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)') {
+                return $matches[1]
+            }
+        }
+    }
+    catch {
+        return $null
+    }
+
+    return $null
+}
+
+function Get-SQTInternetStatus {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $pingLines = @(Invoke-SQTShell $dev "ping -c 1 -W 1 8.8.8.8 2>/dev/null")
+        foreach ($line in $pingLines) {
+            if ($line -match '(\d+) packets transmitted,\s*(\d+) (?:packets )?received') {
+                $sent = [int]$matches[1]
+                $recv = [int]$matches[2]
+                if ($sent -gt 0 -and $recv -ge 1) {
+                    return 'Online'
+                }
+                return 'Offline'
+            }
+            if ($line -match '0% packet loss') {
+                return 'Online'
+            }
+        }
+    }
+    catch {
+        return $null
+    }
+
+    return 'Offline'
+}
+
+function Get-SQTLastErrors {
+    param(
+        [Parameter(Mandatory=$true)][string]$Device,
+        [int]$Lines = 50
+    )
+
+    if ($Device -match ':') { $dev = $Device.Split(':')[0] } else { $dev = $Device }
+
+    try {
+        $logLines = @(Invoke-SQTShell $dev "logcat -d -t $Lines 2>/dev/null")
+        if (-not $logLines) {
+            return [PSCustomObject]@{
+                ErrorCount = 0
+                WarningCount = 0
+                LastError = '-'
+            }
+        }
+
+        $errorLines = $logLines | Where-Object { $_ -match '\bE/' }
+        $warningLines = $logLines | Where-Object { $_ -match '\bW/' }
+        $lastErrorLine = $errorLines | Select-Object -Last 1
+
+        return [PSCustomObject]@{
+            ErrorCount = $errorLines.Count
+            WarningCount = $warningLines.Count
+            LastError = if ($lastErrorLine) { $lastErrorLine.Trim() } else { '-' }
+        }
+    }
+    catch {
+        return [PSCustomObject]@{
+            ErrorCount = 0
+            WarningCount = 0
+            LastError = '-'
+        }
+    }
+}
 
 # End of file
