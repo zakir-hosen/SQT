@@ -696,12 +696,15 @@ function Get-SQTTemperature {
     try {
         $batteryLines = @(Invoke-SQTShell $dev "dumpsys battery 2>/dev/null")
         foreach ($line in $batteryLines) {
-            if ($line -match 'temperature:\s*(\d+)') {
-                $value = [int]$matches[1]
-                if ($value -gt 100) {
-                    $value = [math]::Round($value / 10, 1)
+            if ($line -match 'temperature\s*[:=]\s*(-?\d+(?:\.\d+)?)') {
+                $raw = $matches[1]
+                if (-not [string]::IsNullOrWhiteSpace($raw)) {
+                    $value = [double]$raw
+                    if ($value -gt 100) {
+                        $value = [math]::Round($value / 10, 1)
+                    }
+                    return "$value°C"
                 }
-                return "$value°C"
             }
         }
     }
@@ -747,14 +750,11 @@ function Get-SQTWifiInfo {
     try {
         $wifiLines = @(Invoke-SQTShell $dev "dumpsys wifi 2>/dev/null")
         foreach ($line in $wifiLines) {
-            if ($line -match 'RSSI[:=]\s*(-?\d+)') {
-                return "${matches[1]} dBm"
-            }
-            if ($line -match 'mRssi\s*[:=]\s*(-?\d+)') {
-                return "${matches[1]} dBm"
-            }
-            if ($line -match 'rssi\s*[:=]\s*(-?\d+)') {
-                return "${matches[1]} dBm"
+            if ($line -match '(?:RSSI|mRssi|rssi|signal)\s*[:=]?\s*(-?\d+)') {
+                $raw = $matches[1]
+                if (-not [string]::IsNullOrWhiteSpace($raw)) {
+                    return "$raw dBm"
+                }
             }
         }
     }
